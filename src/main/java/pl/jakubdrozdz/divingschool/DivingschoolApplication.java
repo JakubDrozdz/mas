@@ -1,0 +1,13 @@
+package pl.jakubdrozdz.divingschool;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DivingschoolApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DivingschoolApplication.class, args);
+    }
+
+}
