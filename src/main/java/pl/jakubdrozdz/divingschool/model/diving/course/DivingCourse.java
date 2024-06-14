@@ -1,4 +1,4 @@
-package pl.jakubdrozdz.divingschool.model;
+package pl.jakubdrozdz.divingschool.model.diving.course;
 
 import lombok.Getter;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
@@ -14,6 +14,19 @@ public abstract class DivingCourse {
     protected LocalDate endDate;
     protected Integer additionalCost;
     //Registration Map<Integer, Registration
+
+
+    protected DivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
+        setDetailedDescription(detailedDescription);
+        setCourseStatus(courseStatus);
+        setStartDate(startDate);
+        setEndDate(endDate);
+    }
+
+    protected DivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
+        this(detailedDescription, courseStatus, startDate, endDate);
+        setAdditionalCost(additionalCost);
+    }
 
     public void setDetailedDescription(String detailedDescription) {
         this.detailedDescription = detailedDescription;
@@ -45,7 +58,7 @@ public abstract class DivingCourse {
     }
 
     public static DivingCourse addDivingCourse() {
-        return new SingleDivingCourse();
+        return null;
     }
 
     public abstract int calculateTotalPrice();
