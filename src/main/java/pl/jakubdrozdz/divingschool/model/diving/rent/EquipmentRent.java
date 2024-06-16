@@ -1,22 +1,31 @@
 package pl.jakubdrozdz.divingschool.model.diving.rent;
 
-import lombok.Setter;
+import lombok.Getter;
+import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-@Setter
+@Getter
 public class EquipmentRent {
     private int rentId;
     private LocalDateTime rentDate;
     private LocalDateTime rentReturnDate;
+    private RegistrationRequest registrationRequest;
+    private Set<DivingEquipment> equipmentSet;
 
-    public EquipmentRent(int rentId, LocalDateTime rentDate) {
+    public EquipmentRent(int rentId, LocalDateTime rentDate, RegistrationRequest registrationRequest) {
+        equipmentSet = new HashSet<>();
         setRentId(rentId);
         setRentDate(rentDate);
+        setRegistrationRequest(registrationRequest);
     }
 
-    public EquipmentRent(int rentId, LocalDateTime rentDate, LocalDateTime rentReturnDate) {
-        this(rentId, rentDate);
+    public EquipmentRent(int rentId, LocalDateTime rentDate, LocalDateTime rentReturnDate, RegistrationRequest registrationRequest) {
+        this(rentId, rentDate, registrationRequest);
         setRentReturnDate(rentReturnDate);
     }
 
@@ -34,5 +43,32 @@ public class EquipmentRent {
 
     public static EquipmentRent createEquipmentRent(){
         return null;
+    }
+
+    public void setRegistrationRequest(RegistrationRequest registrationRequest) {
+        if(registrationRequest == null){
+            throw new IllegalArgumentException("Registration request cannot be null");
+        }
+        if(this.registrationRequest != null) {
+            throw new IllegalArgumentException("Equipment rent can only be assigned to one registration request");
+        }
+        this.registrationRequest = registrationRequest;
+        registrationRequest.addEquipmentRent(this);
+    }
+
+    public static void removeEquipmentRent(EquipmentRent equipmentRent) {
+        //if(extent.contains(parkingSpot)){
+            //extent.remove(equipmentRent);
+            RegistrationRequest registrationRequestTmp = equipmentRent.getRegistrationRequest();
+            equipmentRent.registrationRequest = null;
+            registrationRequestTmp.removeEquipmentRent(equipmentRent);
+        //}
+    }
+
+    public void addEquipment(DivingEquipment equipment) {
+        if(!this.equipmentSet.contains(equipment)){
+            this.equipmentSet.add(equipment);
+            equipment.addEquipmentRent(this);
+        }
     }
 }

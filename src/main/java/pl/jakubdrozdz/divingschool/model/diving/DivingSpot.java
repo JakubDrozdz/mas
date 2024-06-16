@@ -3,7 +3,9 @@ package pl.jakubdrozdz.divingschool.model.diving;
 import lombok.Getter;
 import pl.jakubdrozdz.divingschool.model.enumeration.DivingSpotType;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 public class DivingSpot {
@@ -11,13 +13,14 @@ public class DivingSpot {
     private String localization;
     private double depth;
     private DivingSpotType divingSpotType;
-    private List<Diving> divingList;
+    private Set<Diving> divingSet;
 
     public DivingSpot(String spotName, String localization, double depth, DivingSpotType divingSpotType) {
         setSpotName(spotName);
         setLocalization(localization);
         setDepth(depth);
         setDivingSpotType(divingSpotType);
+        divingSet = new HashSet<>();
     }
 
     public void setSpotName(String spotName) {

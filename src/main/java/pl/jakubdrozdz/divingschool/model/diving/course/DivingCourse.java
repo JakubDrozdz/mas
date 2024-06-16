@@ -1,9 +1,12 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
 import lombok.Getter;
+import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
+import pl.jakubdrozdz.divingschool.model.person.Instructor;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 //TODO: add validation to setters
 @Getter
@@ -13,7 +16,9 @@ public abstract class DivingCourse {
     protected LocalDate startDate;
     protected LocalDate endDate;
     protected Integer additionalCost;
-    //Registration Map<Integer, Registration
+    protected Map<Integer, RegistrationRequest> registrationRequests;
+    protected Instructor courseInstructor;
+    protected CourseType courseType;
 
 
     protected DivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
@@ -46,6 +51,34 @@ public abstract class DivingCourse {
 
     public void setAdditionalCost(Integer additionalCost) {
         this.additionalCost = additionalCost;
+    }
+
+    public void addRegistrationRequest(RegistrationRequest registrationRequest) {
+        if(this.registrationRequests.containsKey(registrationRequest.getRegistrationRequestNumber())){
+            //TODO: add detailed exception or do not throw?
+            throw new IllegalArgumentException("Cannot change registration request");
+        }
+        registrationRequests.put(registrationRequest.getRegistrationRequestNumber(), registrationRequest);
+    }
+
+    public void addInstructor(Instructor instructor) {
+        if (this.courseInstructor == null && instructor != null) {
+            this.courseInstructor = instructor;
+            this.courseInstructor.assignToDivingCourse(this);
+        } else if(this.courseInstructor != instructor) {
+            this.courseInstructor.removeFromDivingCourse(this);
+            this.courseInstructor = instructor;
+            this.courseInstructor.assignToDivingCourse(this);
+        }
+    }
+
+    public static void removeDivingCourse(DivingCourse divingCourse){
+        //if(extent.contains(parkingSpot)){
+        //extent.remove(equipmentRent);
+        CourseType courseTypeTmp = divingCourse.getCourseType();
+        divingCourse.courseType = null;
+        courseTypeTmp.removeDivingCourse(divingCourse);
+        //}
     }
 
     public static void printAllCourses() {
