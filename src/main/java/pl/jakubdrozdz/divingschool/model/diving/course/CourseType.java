@@ -1,19 +1,30 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.HashSet;
 import java.util.Set;
 
-//@AllArgsConstructor
 @Getter
+@NoArgsConstructor
+@Entity(name = "Course_Type")
 public class CourseType {
+    @Id
+    @GeneratedValue
+    private Long courseTypeId;
     private String name;
     private int minParticipantAge;
     private int maxParticipantAge;
+    @ManyToOne
+    @JoinColumn(name = "required_certificate")
     private Certificate requiredCertificate;
+    @ManyToOne
+    @JoinColumn(name="granted_certificate", nullable=false)
     private Certificate grantedCertificate;
+    @OneToMany(mappedBy = "courseType")
     private Set<DivingCourse> divingCourses;
 
     public CourseType(String name, int minParticipantAge, int maxParticipantAge) {

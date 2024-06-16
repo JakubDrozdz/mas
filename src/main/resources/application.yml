@@ -1,5 +1,22 @@
 spring:
   application:
     name: divingschool
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=MAS
+    #url: jdbc:h2:mem:testdb
+    username: sa
+    password: zaq1@WSX
+    #password: sa
+    #driver-class-name: org.h2.Driver
+  jpa:
+    #database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: create-drop
+  #h2:
+    #console:
+      #enabled: true
+      #path: /h2-console
 server:
   port: 8080
+

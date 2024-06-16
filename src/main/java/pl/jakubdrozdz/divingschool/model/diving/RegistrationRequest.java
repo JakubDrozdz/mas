@@ -1,6 +1,8 @@
 package pl.jakubdrozdz.divingschool.model.diving;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourse;
 import pl.jakubdrozdz.divingschool.model.diving.rent.EquipmentRent;
 import pl.jakubdrozdz.divingschool.model.person.Person;
@@ -10,11 +12,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@NoArgsConstructor
+@Entity(name = "Registration_Request")
 public class RegistrationRequest {
+    @Id
+    @GeneratedValue
+    private Long registrationRequestId;
     private int registrationRequestNumber;
     private LocalDateTime registrationDate;
+    @ManyToOne
+    @JoinColumn(name = "registration_requests_person", nullable = false)
     private Person person;
+    @ManyToOne
+    @JoinColumn(name = "registration_requests_course", nullable = false)
     private DivingCourse divingCourse;
+    @OneToMany(mappedBy = "registrationRequest")
     private Set<EquipmentRent> equipmentRents;
 
     public RegistrationRequest(int registrationRequestNumber, LocalDateTime registrationDate, Person person, DivingCourse divingCourse) {

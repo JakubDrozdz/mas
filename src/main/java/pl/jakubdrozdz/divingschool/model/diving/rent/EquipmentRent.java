@@ -1,6 +1,8 @@
 package pl.jakubdrozdz.divingschool.model.diving.rent;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 
 import java.time.LocalDateTime;
@@ -10,11 +12,24 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
+@NoArgsConstructor
+@Entity(name = "Equipment_Rent")
 public class EquipmentRent {
+    @Id
+    @GeneratedValue
+    private Long equipmentRentId;
     private int rentId;
     private LocalDateTime rentDate;
     private LocalDateTime rentReturnDate;
+    @ManyToOne
+    @JoinColumn(name = "registration_requests", nullable = false)
     private RegistrationRequest registrationRequest;
+    @ManyToMany
+    @JoinTable(
+            name = "EquipmnetRent_Equipment",
+            joinColumns = { @JoinColumn(name = "equipmentRentId") },
+            inverseJoinColumns = { @JoinColumn(name = "equipmentId") }
+    )
     private Set<DivingEquipment> equipmentSet;
 
     public EquipmentRent(int rentId, LocalDateTime rentDate, RegistrationRequest registrationRequest) {

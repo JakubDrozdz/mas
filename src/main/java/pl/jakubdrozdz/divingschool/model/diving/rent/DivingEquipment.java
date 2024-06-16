@@ -1,6 +1,11 @@
 package pl.jakubdrozdz.divingschool.model.diving.rent;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,14 +14,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
+@NoArgsConstructor
+@Entity(name = "Equipment")
 public class DivingEquipment {
-    private int equipmentId;
+    @Id
+    @GeneratedValue
+    private Long equipmentId;
     private String equipmentName;
     private String equipmentType;
     private String equipmentBrand;
+    @ManyToMany(mappedBy = "equipmentSet")
     private Set<EquipmentRent> rents;
 
-    public DivingEquipment(int equipmentId, String equipmentName, String equipmentType, String equipmentBrand) {
+    public DivingEquipment(Long equipmentId, String equipmentName, String equipmentType, String equipmentBrand) {
         rents = new HashSet<>();
         setEquipmentId(equipmentId);
         setEquipmentName(equipmentName);
@@ -24,7 +34,7 @@ public class DivingEquipment {
         setEquipmentBrand(equipmentBrand);
     }
 
-    public void setEquipmentId(int equipmentId) {
+    public void setEquipmentId(Long equipmentId) {
         this.equipmentId = equipmentId;
     }
 

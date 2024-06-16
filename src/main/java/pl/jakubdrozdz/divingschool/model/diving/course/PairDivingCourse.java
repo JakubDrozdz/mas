@@ -1,11 +1,16 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 
 import java.time.LocalDate;
 
 @Getter
+@NoArgsConstructor
+@Entity
+@DiscriminatorValue("pair")
 public class PairDivingCourse extends DivingCourse {
     private static int priceForPerson = 1350;
 

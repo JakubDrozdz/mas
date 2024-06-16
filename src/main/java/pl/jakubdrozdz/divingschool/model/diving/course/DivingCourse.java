@@ -1,6 +1,8 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import pl.jakubdrozdz.divingschool.model.person.Instructor;
@@ -10,14 +12,26 @@ import java.util.Map;
 
 //TODO: add validation to setters
 @Getter
+@NoArgsConstructor
+@Entity(name = "Diving_Course")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)
 public abstract class DivingCourse {
+    @Id
+    @GeneratedValue
+    private Long courseId;
     protected String detailedDescription;
     protected CourseStatus courseStatus;
     protected LocalDate startDate;
     protected LocalDate endDate;
     protected Integer additionalCost;
+    @OneToMany(mappedBy = "divingCourse")
     protected Map<Integer, RegistrationRequest> registrationRequests;
+    @ManyToOne
+    @JoinColumn(name="course_instructor", nullable=false)
     protected Instructor courseInstructor;
+    @ManyToOne
+    @JoinColumn(name="course_type", nullable=false)
     protected CourseType courseType;
 
 
@@ -77,7 +91,7 @@ public abstract class DivingCourse {
         //extent.remove(equipmentRent);
         CourseType courseTypeTmp = divingCourse.getCourseType();
         divingCourse.courseType = null;
-        courseTypeTmp.removeDivingCourse(divingCourse);
+        //courseTypeTmp.removeDivingCourse(divingCourse);
         //}
     }
 

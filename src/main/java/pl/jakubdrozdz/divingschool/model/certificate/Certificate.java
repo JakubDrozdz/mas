@@ -1,17 +1,26 @@
 package pl.jakubdrozdz.divingschool.model.certificate;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@NoArgsConstructor
+@Entity(name = "Certificate")
 public class Certificate {
+    @Id
+    @GeneratedValue
+    private Long certificateId;
     private String certificateName;
     private String organizationName;
     private String qualificationsDescription;
+    @OneToMany(mappedBy = "certificate")
     private Set<CertificateOwnership> certificateOwnershipSet;
+    @OneToMany(mappedBy = "grantedCertificate")
     private Set<CourseType> courseTypes;
 
     public Certificate(String certificateName, String organizationName, String qualificationsDescription) {
