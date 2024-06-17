@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.person;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
@@ -12,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diver")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)

@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.diving.rent;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Equipment_Rent")
 public class EquipmentRent {
     @Id

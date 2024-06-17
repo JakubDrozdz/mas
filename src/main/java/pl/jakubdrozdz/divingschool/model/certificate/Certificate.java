@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.certificate;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
@@ -9,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Certificate")
 public class Certificate {
     @Id

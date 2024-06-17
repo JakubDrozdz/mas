@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.diving;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.person.Diver;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving")
 public class Diving {
     @Id

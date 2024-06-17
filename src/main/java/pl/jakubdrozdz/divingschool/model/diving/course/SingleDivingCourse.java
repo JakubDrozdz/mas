@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
@@ -8,9 +9,9 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import java.time.LocalDate;
 
 @Getter
-@NoArgsConstructor
 @Entity
 @DiscriminatorValue("single")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SingleDivingCourse extends DivingCourse {
     private static int priceForPerson = 1500;
 

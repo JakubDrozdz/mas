@@ -1,6 +1,7 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 //TODO: add validation to setters
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving_Course")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)
