@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
-
+@NoArgsConstructor
 @Entity(name = "Equipment")
 public class DivingEquipment {
     @Id

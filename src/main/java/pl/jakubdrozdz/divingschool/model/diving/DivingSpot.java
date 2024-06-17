@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
-
+@NoArgsConstructor
 @Entity(name = "Diving_Spot")
 public class DivingSpot {
     @Id

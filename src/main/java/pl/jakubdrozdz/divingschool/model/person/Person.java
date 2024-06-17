@@ -1,7 +1,6 @@
 package pl.jakubdrozdz.divingschool.model.person;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
@@ -11,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity(name = "Person")
 public class Person {
     @Id

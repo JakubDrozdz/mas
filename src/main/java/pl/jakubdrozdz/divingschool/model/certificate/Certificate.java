@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-
+@NoArgsConstructor
 @Entity(name = "Certificate")
 public class Certificate {
     @Id

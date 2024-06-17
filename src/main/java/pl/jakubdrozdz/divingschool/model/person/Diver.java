@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-
+@NoArgsConstructor
 @Entity(name = "Diver")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)

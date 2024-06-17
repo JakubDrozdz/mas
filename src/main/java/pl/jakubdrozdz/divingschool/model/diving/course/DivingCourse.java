@@ -12,7 +12,7 @@ import java.util.Map;
 
 //TODO: add validation to setters
 @Getter
-
+@NoArgsConstructor
 @Entity(name = "Diving_Course")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)
