@@ -32,17 +32,23 @@ public class RegistrationRequest {
 
     public RegistrationRequest(int registrationRequestNumber, LocalDateTime registrationDate, Person person, DivingCourse divingCourse) {
         equipmentRents = new HashSet<>();
-        setRegistrationRequestNumber(registrationRequestNumber);
         setRegistrationDate(registrationDate);
         setPerson(person);
         setDivingCourse(divingCourse);
+        setRegistrationRequestNumber(registrationRequestNumber);
     }
 
     public void setRegistrationRequestNumber(int registrationRequestNumber) {
+        if(registrationRequestNumber <= 0) {
+            throw new IllegalArgumentException("Registration request number must be greater than 0");
+        }
         this.registrationRequestNumber = registrationRequestNumber;
     }
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
+        if(registrationDate == null || registrationDate.isBefore(LocalDateTime.of(2020,1,1,0,0))) {
+            throw new IllegalArgumentException("Registration date cannot be null and before 2020-01-01");
+        }
         this.registrationDate = registrationDate;
     }
 

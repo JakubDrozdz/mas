@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class CourseType {
     @Id
     @GeneratedValue
     private Long courseTypeId;
+    @Column(unique = true)
     private String name;
     private int minParticipantAge;
     private int maxParticipantAge;
@@ -41,14 +43,25 @@ public class CourseType {
     }
 
     public void setName(String name) {
+        if(StringUtils.isBlank(name)){
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
         this.name = name;
     }
 
     public void setMinParticipantAge(int minParticipantAge) {
+        if(minParticipantAge <= 0 || minParticipantAge >= 100){
+            throw new IllegalArgumentException("Min participant age must be between 0 and 100");
+        }
         this.minParticipantAge = minParticipantAge;
     }
 
     public void setMaxParticipantAge(int maxParticipantAge) {
+        if(maxParticipantAge <= 0 || maxParticipantAge >= 100){
+            throw new IllegalArgumentException("Max participant age must be between 0 and 100");
+        } else if (maxParticipantAge <= minParticipantAge) {
+            throw new IllegalArgumentException("Max participant age must be greater than min participant age");
+        }
         this.maxParticipantAge = maxParticipantAge;
     }
 

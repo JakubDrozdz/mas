@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourse;
 import pl.jakubdrozdz.divingschool.model.enumeration.AdvancementLevel;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 @Entity(name = "Instructor")
 @DiscriminatorValue("instructor")
 public class Instructor extends Diver{
+    @Setter
     private AdvancementLevel advancementLevel;
     @OneToMany(mappedBy = "courseInstructor")
     private Set<DivingCourse> divingCourses;
@@ -23,10 +25,6 @@ public class Instructor extends Diver{
         setAdvancementLevel(advancementLevel);
         person.setPhoneNumber(phoneNumber);
         divingCourses = new HashSet<>();
-    }
-
-    public void setAdvancementLevel(AdvancementLevel advancementLevel) {
-        this.advancementLevel = advancementLevel;
     }
 
     public void assignToDivingCourse(DivingCourse divingCourse) {

@@ -1,9 +1,6 @@
 package pl.jakubdrozdz.divingschool.model.person;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +24,9 @@ public class CourseAttendee {
     }
 
     public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+        if(emergencyPhoneNumber == null || !emergencyPhoneNumber.matches(".+\\d{10}")) {
+            throw new IllegalArgumentException("Phone number is not valid (valid format start with + and is minimum 10 numbers long)");
+        }
         this.emergencyPhoneNumber = emergencyPhoneNumber;
     }
 

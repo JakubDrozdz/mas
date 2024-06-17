@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Certificate {
     @Id
     @GeneratedValue
     private Long certificateId;
+    @Column(unique = true)
     private String certificateName;
     private String organizationName;
     private String qualificationsDescription;
@@ -33,14 +35,23 @@ public class Certificate {
     }
 
     public void setCertificateName(String certificateName) {
+        if(StringUtils.isBlank(certificateName)){
+            throw new IllegalArgumentException("Certificate name cannot be blank");
+        }
         this.certificateName = certificateName;
     }
 
     public void setOrganizationName(String organizationName) {
+        if(StringUtils.isBlank(organizationName)) {
+            throw new IllegalArgumentException("Organization name cannot be blank");
+        }
         this.organizationName = organizationName;
     }
 
     public void setQualificationsDescription(String qualificationsDescription) {
+        if(StringUtils.isBlank(qualificationsDescription) || qualificationsDescription.length() > 300) {
+            throw new IllegalArgumentException("Qualifications description cannot be blank and max length is 300");
+        }
         this.qualificationsDescription = qualificationsDescription;
     }
 

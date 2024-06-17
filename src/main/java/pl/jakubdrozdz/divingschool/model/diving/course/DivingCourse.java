@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import pl.jakubdrozdz.divingschool.model.person.Instructor;
@@ -11,7 +13,6 @@ import pl.jakubdrozdz.divingschool.model.person.Instructor;
 import java.time.LocalDate;
 import java.util.Map;
 
-//TODO: add validation to setters
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving_Course")
@@ -22,6 +23,7 @@ public abstract class DivingCourse {
     @GeneratedValue
     private Long courseId;
     protected String detailedDescription;
+    @Setter
     protected CourseStatus courseStatus;
     protected LocalDate startDate;
     protected LocalDate endDate;
@@ -49,22 +51,36 @@ public abstract class DivingCourse {
     }
 
     public void setDetailedDescription(String detailedDescription) {
+        if(StringUtils.isBlank(detailedDescription)){
+            throw new IllegalArgumentException("Detailed description cannot be empty");
+        } else if (detailedDescription.length() > 500) {
+            throw new IllegalArgumentException("Detailed description is longer than 500 characters");
+        }
         this.detailedDescription = detailedDescription;
     }
 
-    public void setCourseStatus(CourseStatus courseStatus) {
-        this.courseStatus = courseStatus;
-    }
-
     public void setStartDate(LocalDate startDate) {
+        if(startDate == null || startDate.isBefore(LocalDate.of(1900,1,1))){
+            throw new IllegalArgumentException("Start date cannot be null and before 1900-01-01");
+        } else if (endDate != null && !startDate.isBefore(endDate)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
         this.startDate = startDate;
     }
 
     public void setEndDate(LocalDate endDate) {
+        if(endDate == null || endDate.isBefore(LocalDate.of(1900,1,1))){
+            throw new IllegalArgumentException("End date cannot be null and before 1900-01-01");
+        } else if (startDate != null && !endDate.isAfter(startDate)) {
+            throw new IllegalArgumentException("End date cannot be before start date");
+        }
         this.endDate = endDate;
     }
 
-    public void setAdditionalCost(Integer additionalCost) {
+    public void setAdditionalCost(int additionalCost) {
+        if(additionalCost <= 0) {
+            throw new IllegalArgumentException("Additional cost cannot be negative");
+        }
         this.additionalCost = additionalCost;
     }
 

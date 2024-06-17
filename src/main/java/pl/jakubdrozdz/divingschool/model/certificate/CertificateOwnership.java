@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.person.Diver;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,6 +17,7 @@ public class CertificateOwnership {
     @Id
     @GeneratedValue
     private Long certificateOwnershipId;
+    @Column(unique = true)
     private String certificateNumber;
     private LocalDateTime issueDate;
     @ManyToOne
@@ -32,10 +35,18 @@ public class CertificateOwnership {
     }
 
     public void setCertificateNumber(String certificateNumber) {
+        if(StringUtils.isBlank(certificateNumber)){
+            throw new IllegalArgumentException("Certificate number cannot be blank");
+        }
         this.certificateNumber = certificateNumber;
     }
 
     public void setIssueDate(LocalDateTime issueDate) {
+        if(issueDate == null){
+            throw new IllegalArgumentException("Issue date cannot be null");
+        } else if(issueDate.isBefore(LocalDate.of(1900,1,1).atTime(0,0))){
+            throw new IllegalArgumentException("Issue date cannot be before 1900-01-01");
+        }
         this.issueDate = issueDate;
     }
 

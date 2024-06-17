@@ -25,10 +25,16 @@ public class GroupDivingCourse extends DivingCourse {
     }
 
     public static void setPriceForPerson(int priceForPerson) {
+        if(priceForPerson <= 0){
+            throw new IllegalArgumentException("Price must be greater than 0");
+        }
         GroupDivingCourse.priceForPerson = priceForPerson;
     }
 
     public static void setMaxNumberOfParticipants(int maxNumberOfParticipants) {
+        if(maxNumberOfParticipants <= 2){
+            throw new IllegalArgumentException("Max number of participants must be greater than 2");
+        }
         GroupDivingCourse.maxNumberOfParticipants = maxNumberOfParticipants;
     }
 

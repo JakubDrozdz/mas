@@ -29,20 +29,35 @@ public class Diving {
     public Diving(LocalDateTime divingStart, LocalDateTime divingEnd, double maxDivingDepth, Diver diver, DivingSpot divingSpot) {
         setDivingStart(divingStart);
         setDivingEnd(divingEnd);
-        setMaxDivingDepth(maxDivingDepth);
         setDiver(diver);
         setDivingSpot(divingSpot);
+        setMaxDivingDepth(maxDivingDepth);
     }
 
     public void setDivingStart(LocalDateTime divingStart) {
+        if(divingStart == null || divingStart.isBefore(LocalDateTime.of(1900,1,1,0,0))){
+            throw new IllegalArgumentException("Start date cannot be null and before 1900-01-01");
+        } else if (divingEnd != null && !divingStart.isBefore(divingEnd)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
         this.divingStart = divingStart;
     }
 
     public void setDivingEnd(LocalDateTime divingEnd) {
+        if(divingEnd == null || divingEnd.isBefore(LocalDateTime.of(1900,1,1,0,0))){
+            throw new IllegalArgumentException("Start date cannot be null and before 1900-01-01");
+        } else if (divingStart != null && !divingEnd.isAfter(divingStart)) {
+            throw new IllegalArgumentException("End date cannot be before start date");
+        }
         this.divingEnd = divingEnd;
     }
 
     public void setMaxDivingDepth(double maxDivingDepth) {
+        if(maxDivingDepth <= 0){
+            throw new IllegalArgumentException("Max diving depth must be greater than zero");
+        } else if (maxDivingDepth > divingSpot.getDepth()) {
+            throw new IllegalArgumentException("Max diving depth must be less than diving spot depth");
+        }
         this.maxDivingDepth = maxDivingDepth;
     }
 

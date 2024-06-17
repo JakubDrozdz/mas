@@ -1,12 +1,12 @@
 package pl.jakubdrozdz.divingschool.model.diving.rent;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @Entity(name = "Equipment")
 public class DivingEquipment {
     @Id
-    @GeneratedValue
     private Long equipmentId;
     private String equipmentName;
     private String equipmentType;
@@ -26,7 +25,7 @@ public class DivingEquipment {
     @ManyToMany(mappedBy = "equipmentSet")
     private Set<EquipmentRent> rents;
 
-    public DivingEquipment(Long equipmentId, String equipmentName, String equipmentType, String equipmentBrand) {
+    public DivingEquipment(int equipmentId, String equipmentName, String equipmentType, String equipmentBrand) {
         rents = new HashSet<>();
         setEquipmentId(equipmentId);
         setEquipmentName(equipmentName);
@@ -34,19 +33,31 @@ public class DivingEquipment {
         setEquipmentBrand(equipmentBrand);
     }
 
-    public void setEquipmentId(Long equipmentId) {
-        this.equipmentId = equipmentId;
+    public void setEquipmentId(int equipmentId) {
+        if(equipmentId <= 0) {
+            throw new IllegalArgumentException("Equipment Id must be greater than 0");
+        }
+        this.equipmentId = Long.valueOf(equipmentId);
     }
 
     public void setEquipmentName(String equipmentName) {
+        if(StringUtils.isBlank(equipmentName)) {
+            throw new IllegalArgumentException("Equipment name cannot be empty");
+        }
         this.equipmentName = equipmentName;
     }
 
     public void setEquipmentType(String equipmentType) {
+        if(StringUtils.isBlank(equipmentType)) {
+            throw new IllegalArgumentException("Equipment type cannot be empty");
+        }
         this.equipmentType = equipmentType;
     }
 
     public void setEquipmentBrand(String equipmentBrand) {
+        if(StringUtils.isBlank(equipmentBrand)) {
+            throw new IllegalArgumentException("Equipment brand cannot be empty");
+        }
         this.equipmentBrand = equipmentBrand;
     }
 

@@ -24,6 +24,9 @@ public class SingleDivingCourse extends DivingCourse {
     }
 
     public static void setPriceForPerson(int priceForPerson) {
+        if(priceForPerson <= 0){
+            throw new IllegalArgumentException("Price must be greater than 0");
+        }
         SingleDivingCourse.priceForPerson = priceForPerson;
     }
 

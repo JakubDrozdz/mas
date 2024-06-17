@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import pl.jakubdrozdz.divingschool.model.diving.RegistrationRequest;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -19,7 +17,6 @@ public class EquipmentRent {
     @Id
     @GeneratedValue
     private Long equipmentRentId;
-    private int rentId;
     private LocalDateTime rentDate;
     private LocalDateTime rentReturnDate;
     @ManyToOne
@@ -33,27 +30,32 @@ public class EquipmentRent {
     )
     private Set<DivingEquipment> equipmentSet;
 
-    public EquipmentRent(int rentId, LocalDateTime rentDate, RegistrationRequest registrationRequest) {
+    public EquipmentRent(LocalDateTime rentDate, RegistrationRequest registrationRequest) {
         equipmentSet = new HashSet<>();
-        setRentId(rentId);
         setRentDate(rentDate);
         setRegistrationRequest(registrationRequest);
     }
 
-    public EquipmentRent(int rentId, LocalDateTime rentDate, LocalDateTime rentReturnDate, RegistrationRequest registrationRequest) {
-        this(rentId, rentDate, registrationRequest);
+    public EquipmentRent(LocalDateTime rentDate, LocalDateTime rentReturnDate, RegistrationRequest registrationRequest) {
+        this(rentDate, registrationRequest);
         setRentReturnDate(rentReturnDate);
     }
 
-    public void setRentId(int rentId) {
-        this.rentId = rentId;
-    }
-
     public void setRentDate(LocalDateTime rentDate) {
+        if(rentDate == null || rentDate.isBefore(LocalDateTime.of(2020,1,1,0,0))){
+            throw new IllegalArgumentException("Rent date cannot be null and before 2020-01-01");
+        } else if (rentReturnDate != null && !rentDate.isBefore(rentReturnDate)) {
+            throw new IllegalArgumentException("Rent date cannot be after return date");
+        }
         this.rentDate = rentDate;
     }
 
     public void setRentReturnDate(LocalDateTime rentReturnDate) {
+        if(rentReturnDate == null || rentReturnDate.isBefore(LocalDateTime.of(2020,1,1,0,0))){
+            throw new IllegalArgumentException("Rent date cannot be null and before 2020-01-01");
+        } else if (rentDate != null && !rentReturnDate.isAfter(rentDate)) {
+            throw new IllegalArgumentException("Return date cannot be before rent date");
+        }
         this.rentReturnDate = rentReturnDate;
     }
 

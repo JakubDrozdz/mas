@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 import pl.jakubdrozdz.divingschool.model.certificate.CertificateOwnership;
 import pl.jakubdrozdz.divingschool.model.diving.Diving;
@@ -38,6 +39,9 @@ public class Diver {
     }
 
     public void setMedicalInformation(String medicalInformation) {
+        if(StringUtils.isBlank(medicalInformation) || medicalInformation.trim().length() >= 500){
+            throw new IllegalArgumentException("Medical information should be max 500 characters long and not be blank");
+        }
         this.medicalInformation = medicalInformation;
     }
 
