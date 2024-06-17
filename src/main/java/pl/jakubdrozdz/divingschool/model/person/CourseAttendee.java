@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Getter
-@NoArgsConstructor
+
 @Entity(name = "Course_Attendee")
 public class CourseAttendee {
     @Id

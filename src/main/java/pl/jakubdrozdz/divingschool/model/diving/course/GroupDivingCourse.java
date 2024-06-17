@@ -8,7 +8,7 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import java.time.LocalDate;
 
 @Getter
-@NoArgsConstructor
+
 @Entity
 @DiscriminatorValue("group")
 public class GroupDivingCourse extends DivingCourse {

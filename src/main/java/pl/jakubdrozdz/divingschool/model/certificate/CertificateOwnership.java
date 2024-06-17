@@ -8,7 +8,7 @@ import pl.jakubdrozdz.divingschool.model.person.Diver;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+
 @Entity(name = "Certificate_Ownership")
 public class CertificateOwnership {
     @Id

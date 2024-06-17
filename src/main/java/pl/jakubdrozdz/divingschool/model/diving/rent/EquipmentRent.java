@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+
 @Entity(name = "Equipment_Rent")
 public class EquipmentRent {
     @Id

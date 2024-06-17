@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+
 @Entity(name = "Registration_Request")
 public class RegistrationRequest {
     @Id

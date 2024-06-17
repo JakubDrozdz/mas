@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Getter
-@NoArgsConstructor
+
 @Entity(name = "Diving")
 public class Diving {
     @Id

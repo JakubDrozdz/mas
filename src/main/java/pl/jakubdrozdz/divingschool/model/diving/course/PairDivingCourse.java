@@ -8,7 +8,7 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import java.time.LocalDate;
 
 @Getter
-@NoArgsConstructor
+
 @Entity
 @DiscriminatorValue("pair")
 public class PairDivingCourse extends DivingCourse {
