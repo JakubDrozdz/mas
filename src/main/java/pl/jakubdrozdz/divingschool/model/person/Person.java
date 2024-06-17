@@ -28,7 +28,6 @@ public class Person {
     @OneToOne
     private CourseAttendee courseAttendee;
 
-
     public Person(String firstName, String lastName, LocalDate birthDate, String emailAddress) {
         registrationRequests = new HashSet<>();
         setFirstName(firstName);
