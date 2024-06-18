@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkoła nurkowa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 46, 93, 0.7);
+        }
+        .navbar {
+            width: 100%;
+            background-color: rgba(43, 132, 229, 1);
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .navbar button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .content {
+            display: flex;
+            width: 90%;
+            margin: 20px 0;
+            justify-content: space-around;
+        }
+        .content img {
+            max-width: 70%;
+            border-radius: 5px;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .sidebar button {
+            padding: 10px;
+        }
+
+        button {
+            background-color: rgb(82, 178, 213);
+            border: 2px solid black;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+        a{
+            text-underline: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="empty_page.html"><button>Szkolenia</button></a>
+    <a href="empty_page.html"><button>Rejestracja na szkolenie</button></a>
+    <a href="empty_page.html"><button>Zarejestruj nurkowanie</button></a>
+</div>
+
+<div class="content">
+    <img src="diving.jpeg" alt="Image of diver">
+    <div class="sidebar">
+        <button>Nowe szkolenie</button>
+        <a href="empty_page.html"><button>Nowy typ szkolenia</button></a>
+        <a href="empty_page.html"><button>Nowy certyfikat</button></a>
+        <a href="empty_page.html"><button>Przypisz instruktora</button></a>
+    </div>
+</div>
+
+</body>
+</html>
