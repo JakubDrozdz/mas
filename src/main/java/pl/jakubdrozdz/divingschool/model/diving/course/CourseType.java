@@ -25,7 +25,7 @@ public class CourseType {
     @JoinColumn(name = "required_certificate")
     private Certificate requiredCertificate;
     @ManyToOne
-    @JoinColumn(name="granted_certificate", nullable=false)
+    @JoinColumn(name="granted_certificate")
     private Certificate grantedCertificate;
     @OneToMany(mappedBy = "courseType")
     private Set<DivingCourse> divingCourses;
@@ -81,9 +81,10 @@ public class CourseType {
     }
 
     public void addDivingCourse(DivingCourse divingCourse) {
-        if(divingCourse == null || !divingCourse.getCourseType().equals(this)) {
-            //TODO
-            throw new IllegalArgumentException();
+        if(divingCourse == null) {
+            throw new IllegalArgumentException("Cannot assign null value");
+        } else if (!divingCourse.getCourseType().equals(this)) {
+            throw new IllegalArgumentException("Cannot assign diving course from another Course Type");
         }
         divingCourses.add(divingCourse);
     }
@@ -93,7 +94,7 @@ public class CourseType {
             throw new IllegalArgumentException();
         }
 
-        DivingCourse.removeDivingCourse(divingCourse);
+        //DivingCourse.removeDivingCourse(divingCourse);
         divingCourses.remove(divingCourse);
     }
 }

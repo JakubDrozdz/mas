@@ -30,14 +30,15 @@ public class EquipmentRent {
     )
     private Set<DivingEquipment> equipmentSet;
 
-    public EquipmentRent(LocalDateTime rentDate, RegistrationRequest registrationRequest) {
+    public EquipmentRent(LocalDateTime rentDate, RegistrationRequest registrationRequest, Set<DivingEquipment> equipment) {
         equipmentSet = new HashSet<>();
         setRentDate(rentDate);
         setRegistrationRequest(registrationRequest);
+        addEquipments(equipment);
     }
 
-    public EquipmentRent(LocalDateTime rentDate, LocalDateTime rentReturnDate, RegistrationRequest registrationRequest) {
-        this(rentDate, registrationRequest);
+    public EquipmentRent(LocalDateTime rentDate, LocalDateTime rentReturnDate, RegistrationRequest registrationRequest, Set<DivingEquipment> equipment) {
+        this(rentDate, registrationRequest, equipment);
         setRentReturnDate(rentReturnDate);
     }
 
@@ -59,10 +60,6 @@ public class EquipmentRent {
         this.rentReturnDate = rentReturnDate;
     }
 
-    public static EquipmentRent createEquipmentRent(){
-        return null;
-    }
-
     public void setRegistrationRequest(RegistrationRequest registrationRequest) {
         if(registrationRequest == null){
             throw new IllegalArgumentException("Registration request cannot be null");
@@ -74,19 +71,34 @@ public class EquipmentRent {
         registrationRequest.addEquipmentRent(this);
     }
 
-    public static void removeEquipmentRent(EquipmentRent equipmentRent) {
+    public void addEquipment(DivingEquipment equipment) {
+        if(equipment == null){
+            throw new IllegalArgumentException("Cannot add null diving equipment");
+        }
+        if(!this.equipmentSet.contains(equipment)){
+            this.equipmentSet.add(equipment);
+            equipment.addEquipmentRent(this);
+        }
+    }
+    public void addEquipments(Set<DivingEquipment> equipment) {
+        if(equipment == null || equipment.isEmpty()){
+            throw new IllegalArgumentException("Equipment list cannot be null or empty");
+        }
+        for(DivingEquipment eq : equipment){
+            this.addEquipment(eq);
+        }
+    }
+
+    public static EquipmentRent createEquipmentRent(){
+        return null;
+    }
+
+    /*public static void removeEquipmentRent(EquipmentRent equipmentRent) {
         //if(extent.contains(parkingSpot)){
             //extent.remove(equipmentRent);
             RegistrationRequest registrationRequestTmp = equipmentRent.getRegistrationRequest();
             equipmentRent.registrationRequest = null;
             registrationRequestTmp.removeEquipmentRent(equipmentRent);
         //}
-    }
-
-    public void addEquipment(DivingEquipment equipment) {
-        if(!this.equipmentSet.contains(equipment)){
-            this.equipmentSet.add(equipment);
-            equipment.addEquipmentRent(this);
-        }
-    }
+    }*/
 }

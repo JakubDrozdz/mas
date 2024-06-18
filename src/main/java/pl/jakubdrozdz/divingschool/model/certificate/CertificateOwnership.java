@@ -51,12 +51,18 @@ public class CertificateOwnership {
     }
 
     private void setDiver(Diver diver) {
+        if(diver == null){
+            throw new IllegalArgumentException("Diver cannot be null");
+        }
         this.diver = diver;
-        this.diver.addCertificate(this);
+        this.diver.addCertificateOwnership(this);
     }
 
     private void setCertificate(Certificate certificate) {
+        if(certificate == null){
+            throw new IllegalArgumentException("Certificate cannot be null");
+        }
         this.certificate = certificate;
-        this.certificate.addCertificate(this);
+        this.certificate.addCertificateOwnership(this);
     }
 }

@@ -48,14 +48,27 @@ public class Diver {
     public void setPerson(Person person) {
         this.person = person;
         this.person.setDiver(this);
+
     }
 
-    public void addCertificate(CertificateOwnership certificateOwnership) {
+    public void addCertificateOwnership(CertificateOwnership certificateOwnership) {
+        if(certificateOwnership == null) {
+            throw new IllegalArgumentException("Certificate ownership cannot be null");
+        }
         if(this.certificateOwnershipSet.contains(certificateOwnership)){
-            //TODO: throw exception?
             throw new IllegalArgumentException("Cannot have duplicated certificates");
         }
         this.certificateOwnershipSet.add(certificateOwnership);
+    }
+
+    public void addDiving(Diving diving) {
+        if(diving == null) {
+            throw new IllegalArgumentException("Cannot add null reference");
+        }
+        if(!diving.getDiver().equals(this)){
+            throw new IllegalArgumentException("Trying to add diving for unrelated diver");
+        }
+        divings.add(diving);
     }
 
     public void addCertificate(Certificate certificate) {

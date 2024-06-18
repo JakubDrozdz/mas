@@ -59,6 +59,15 @@ public class DivingSpot {
     }
 
     public void addDiving(Diving diving) {
-
+        if(diving == null) {
+            throw new IllegalArgumentException("Cannot add null reference");
+        }
+        if(!diving.getDivingSpot().equals(this)){
+            throw new IllegalArgumentException("Trying to add diving for unrelated diving spot");
+        }
+        if(this.getDepth() < diving.getMaxDivingDepth()) {
+            throw new IllegalArgumentException("Cannot add diving to diving stop with less depth");
+        }
+        divingSet.add(diving);
     }
 }

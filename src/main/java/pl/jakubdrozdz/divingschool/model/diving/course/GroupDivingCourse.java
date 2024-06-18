@@ -16,12 +16,12 @@ public class GroupDivingCourse extends DivingCourse {
     private static int priceForPerson = 1150;
     private static int maxNumberOfParticipants = 8;
 
-    public GroupDivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
-        super(detailedDescription, courseStatus, startDate, endDate);
+    public GroupDivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
+        super(courseType, detailedDescription, courseStatus, startDate, endDate);
     }
 
-    public GroupDivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
-        super(detailedDescription, courseStatus, startDate, endDate, additionalCost);
+    public GroupDivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
+        super(courseType, detailedDescription, courseStatus, startDate, endDate, additionalCost);
     }
 
     public static void setPriceForPerson(int priceForPerson) {

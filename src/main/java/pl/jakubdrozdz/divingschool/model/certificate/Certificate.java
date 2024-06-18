@@ -55,13 +55,11 @@ public class Certificate {
         this.qualificationsDescription = qualificationsDescription;
     }
 
-    public static Certificate addCertificate(){
-        return null;
-    }
-
-    public void addCertificate(CertificateOwnership certificateOwnership){
+    public void addCertificateOwnership(CertificateOwnership certificateOwnership){
+        if(certificateOwnership == null){
+            throw new IllegalArgumentException("Certificate ownership cannot be null");
+        }
         if(this.certificateOwnershipSet.contains(certificateOwnership)){
-            //TODO: throw exception?
             throw new IllegalArgumentException("Cannot have duplicated certificates");
         }
         this.certificateOwnershipSet.add(certificateOwnership);
@@ -72,5 +70,9 @@ public class Certificate {
             this.courseTypes.add(courseType);
             courseType.addGrantedCertificate(this);
         }
+    }
+
+    public static Certificate addCertificateOwnership(){
+        return null;
     }
 }

@@ -53,28 +53,35 @@ public class RegistrationRequest {
     }
 
     private void setPerson(Person person) {
+        if(person == null){
+            throw new IllegalArgumentException("Person cannot be null");
+        }
         this.person = person;
         this.person.addRegistrationRequest(this);
     }
 
     private void setDivingCourse(DivingCourse divingCourse) {
+        if(divingCourse == null){
+            throw new IllegalArgumentException("Diving course cannot be null");
+        }
         this.divingCourse = divingCourse;
         this.divingCourse.addRegistrationRequest(this);
     }
 
     public void addEquipmentRent(EquipmentRent equipmentRent) {
-        if(equipmentRent == null || !equipmentRent.getRegistrationRequest().equals(this)){
-            //TODO
-            throw new IllegalArgumentException();
+        if(equipmentRent == null){
+            throw new IllegalArgumentException("EquipmentRent cannot be null");
+        } else if (!equipmentRent.getRegistrationRequest().equals(this)){
+            throw new IllegalArgumentException("EquipmentRent has already been registered");
         }
         equipmentRents.add(equipmentRent);
     }
 
-    public void removeEquipmentRent(EquipmentRent equipmentRent) {
+    /*public void removeEquipmentRent(EquipmentRent equipmentRent) {
         if(equipmentRent == null || !equipmentRents.contains(equipmentRent)){
             throw new IllegalArgumentException();
         }
         EquipmentRent.removeEquipmentRent(equipmentRent);
         equipmentRents.remove(equipmentRent);
-    }
+    }*/
 }

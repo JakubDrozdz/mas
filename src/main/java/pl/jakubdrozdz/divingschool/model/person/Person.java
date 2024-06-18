@@ -85,8 +85,10 @@ public class Person {
     }
 
     public void addRegistrationRequest(RegistrationRequest registrationRequest) {
+        if(registrationRequest == null) {
+            throw new IllegalArgumentException("Registration request cannot be null");
+        }
         if(this.registrationRequests.contains(registrationRequest)){
-            //TODO: add detailed exception or do not throw?
             throw new IllegalArgumentException("Cannot add duplicated registration request");
         }
         registrationRequests.add(registrationRequest);
@@ -94,7 +96,6 @@ public class Person {
 
     public void setDiver(Diver diver) {
         if(this.diver != null && diver != null) {
-            //TODO: add detailed exception or do not throw?
             throw new IllegalArgumentException("Cannot change Diver");
         } else {
             this.diver = diver;

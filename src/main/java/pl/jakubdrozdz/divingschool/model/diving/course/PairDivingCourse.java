@@ -15,12 +15,12 @@ import java.time.LocalDate;
 public class PairDivingCourse extends DivingCourse {
     private static int priceForPerson = 1350;
 
-    public PairDivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
-        super(detailedDescription, courseStatus, startDate, endDate);
+    public PairDivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
+        super(courseType, detailedDescription, courseStatus, startDate, endDate);
     }
 
-    public PairDivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
-        super(detailedDescription, courseStatus, startDate, endDate, additionalCost);
+    public PairDivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
+        super(courseType, detailedDescription, courseStatus, startDate, endDate, additionalCost);
     }
 
     public static void setPriceForPerson(int priceForPerson) {

@@ -11,6 +11,7 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 import pl.jakubdrozdz.divingschool.model.person.Instructor;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -31,22 +32,24 @@ public abstract class DivingCourse {
     @OneToMany(mappedBy = "divingCourse")
     protected Map<Integer, RegistrationRequest> registrationRequests;
     @ManyToOne
-    @JoinColumn(name="course_instructor", nullable=false)
+    @JoinColumn(name="course_instructor")
     protected Instructor courseInstructor;
     @ManyToOne
     @JoinColumn(name="course_type", nullable=false)
     protected CourseType courseType;
 
 
-    protected DivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
+    protected DivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate) {
+        registrationRequests = new HashMap<>();
         setDetailedDescription(detailedDescription);
         setCourseStatus(courseStatus);
         setStartDate(startDate);
         setEndDate(endDate);
+        setCourseType(courseType);
     }
 
-    protected DivingCourse(String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
-        this(detailedDescription, courseStatus, startDate, endDate);
+    protected DivingCourse(CourseType courseType, String detailedDescription, CourseStatus courseStatus, LocalDate startDate, LocalDate endDate, Integer additionalCost) {
+        this(courseType, detailedDescription, courseStatus, startDate, endDate);
         setAdditionalCost(additionalCost);
     }
 
@@ -84,9 +87,22 @@ public abstract class DivingCourse {
         this.additionalCost = additionalCost;
     }
 
+    public void setCourseType(CourseType courseType) {
+        if(courseType == null && this.courseType == null){
+            throw new IllegalArgumentException("Course Type cannot be null");
+        } else if (courseType != null && this.courseType != null) {
+            throw new IllegalArgumentException("Course Type is already set");
+        } else if (courseType == null) {
+            this.courseType.removeDivingCourse(this);
+        } else {
+            this.courseType = courseType;
+            this.courseType.addDivingCourse(this);
+        }
+
+    }
+
     public void addRegistrationRequest(RegistrationRequest registrationRequest) {
         if(this.registrationRequests.containsKey(registrationRequest.getRegistrationRequestNumber())){
-            //TODO: add detailed exception or do not throw?
             throw new IllegalArgumentException("Cannot change registration request");
         }
         registrationRequests.put(registrationRequest.getRegistrationRequestNumber(), registrationRequest);
@@ -101,15 +117,6 @@ public abstract class DivingCourse {
             this.courseInstructor = instructor;
             this.courseInstructor.assignToDivingCourse(this);
         }
-    }
-
-    public static void removeDivingCourse(DivingCourse divingCourse){
-        //if(extent.contains(parkingSpot)){
-        //extent.remove(equipmentRent);
-        CourseType courseTypeTmp = divingCourse.getCourseType();
-        divingCourse.courseType = null;
-        //courseTypeTmp.removeDivingCourse(divingCourse);
-        //}
     }
 
     public static void printAllCourses() {

@@ -61,12 +61,22 @@ public class Diving {
         this.maxDivingDepth = maxDivingDepth;
     }
 
+    //TODO: can we change associations?
     public void setDiver(Diver diver) {
+        if(diver == null){
+            throw new IllegalArgumentException("Diver cannot be null");
+        }
         this.diver = diver;
+        diver.addDiving(this);
     }
 
+    //TODO: can we change associations?
     public void setDivingSpot(DivingSpot divingSpot) {
+        if(divingSpot == null){
+            throw new IllegalArgumentException("Diving spot cannot be null");
+        }
         this.divingSpot = divingSpot;
+        divingSpot.addDiving(this);
     }
 
     public int getDurationMinutes() {
