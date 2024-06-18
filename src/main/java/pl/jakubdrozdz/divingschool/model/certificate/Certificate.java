@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Certificate")
+@ToString
 public class Certificate {
     @Id
     @GeneratedValue

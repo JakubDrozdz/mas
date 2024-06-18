@@ -1,10 +1,14 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Fetch;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.HashSet;
@@ -23,9 +27,13 @@ public class CourseType {
     private int maxParticipantAge;
     @ManyToOne
     @JoinColumn(name = "required_certificate")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
+    @JsonIdentityReference(alwaysAsId = true)
     private Certificate requiredCertificate;
     @ManyToOne
     @JoinColumn(name="granted_certificate")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
+    @JsonIdentityReference(alwaysAsId = true)
     private Certificate grantedCertificate;
     @OneToMany(mappedBy = "courseType")
     private Set<DivingCourse> divingCourses;

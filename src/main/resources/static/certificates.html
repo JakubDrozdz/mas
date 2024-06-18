@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkoła nurkowa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /*.navbar {
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .navbar button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+        .content {
+            display: flex;
+            width: 90%;
+            margin: 20px 0;
+        }
+        .main-content {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            height: 500px;
+            margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-content img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .sidebar button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }*/
+        .wrapper{
+            width: 100%;
+            display: flex;
+            gap: 5%;
+        }
+        .certificates {
+            padding: 0 2%;
+            width: 40%;
+        }
+        .certificates ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .certificates li {
+            background: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .courses {
+            padding: 0 2%;
+            width: 60%;
+        }
+        .courses ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .courses li {
+            background: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!--<div class="navbar">
+    <button>Szkolenia</button>
+    <button>Rejestracja na szkolenie</button>
+    <button>Zarejestruj nurkowanie</button>
+</div>
+
+<div class="content">
+    <div class="main-content">
+        <img src="your-image-url-here.jpg" alt="Main Content Image">
+    </div>
+    <div class="sidebar">
+        <button>Nowe szkolenie</button>
+        <button>Nowy typ szkolenia</button>
+        <button>Nowy certyfikat</button>
+        <button>Przypisz instruktora</button>
+    </div>
+</div>-->
+<div class="wrapper">
+    <div class="certificates">
+        <h2>Certificates</h2>
+        <ul id="certificates-list"></ul>
+    </div>
+    <div class="courses">
+        <h2>Courses</h2>
+        <ul id="course-list"></ul>
+    </div>
+</div>
+
+
+<script src="script_certificates.js"></script>
+</body>
+</html>
