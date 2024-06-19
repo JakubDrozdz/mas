@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface CertificateRepository extends JpaRepository<Certificate, Long> {
-    //@Query("SELECT DISTINCT c FROM Certificate c LEFT JOIN FETCH c.courseTypes LEFT JOIN FETCH c.certificateOwnershipSet")
     @Query("SELECT DISTINCT c FROM Certificate c LEFT JOIN FETCH c.courseTypes")
     List<Certificate> findAllWithCourseTypes();
 }
