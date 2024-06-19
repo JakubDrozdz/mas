@@ -20,6 +20,8 @@ function fetchOptions() {
 
 function populateSelectList(options) {
     const select = document.getElementById('optionsSelect');
+    const btn = document.getElementById('otherTrainingBtn');
+    select.style.display = 'inline-block';
     select.innerHTML = '';
 
     if (options.length > 0) {
@@ -30,11 +32,10 @@ function populateSelectList(options) {
             opt.textContent = "courseId:" + option.courseId + ";additionalCost:" + option.additionalCost;
             select.appendChild(opt);
         });
+        btn.disabled = false;
     } else {
-        const opt = document.createElement('option');
-        opt.value = '';
-        opt.textContent = 'Brak kursów nurkowych';
-        select.appendChild(opt);
+        btn.disabled = true;
+        select.style.display = 'none';
     }
 }
 
@@ -43,8 +44,8 @@ function closePopUp() {
 }
 
 window.onclick = function(event) {
-    var popUp = document.getElementById('myPopUp');
-    if (event.target == popUp) {
+    const popUp = document.getElementById('myPopUp');
+    if (event.target === popUp) {
         closePopUp();
     }
 }
