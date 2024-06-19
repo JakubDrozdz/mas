@@ -88,11 +88,12 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.4);
             padding: 10px;
         }
-        .buttons a{
+        .buttons a, .popUp-body a{
             text-underline: none;
             color: black;
         }
     </style>
+    <link rel="stylesheet" href="popup_styles.css">
 </head>
 <body>
 <div class="wrapper">
@@ -127,10 +128,23 @@
 </div>
 <div class="buttons">
     <button onclick="addNewCourseType()">Dodaj typ szkolenia</button>
-    <button onclick="redirect()">Dalej</button>
+    <button onclick="showPrompt()">Dalej</button>
 </div>
 
+<div id="myPopUp" class="popUp">
+    <div class="popUp-content">
+        <div class="popUp-header">
+            <h2>Wybierz opcję</h2>
+            <span class="close" onclick="closePopUp()">&times;</span>
+        </div>
+        <div class="popUp-body">
+            <a href="empty_page.html" onclick="closePopUp()"><button>Nowe szkolenie</button></a>
+            <a href="empty_page.html" onclick="closePopUp()"><button>Na podstawie innego szkolenia</button></a>
+        </div>
+    </div>
+</div>
 
 <script src="script_certificates.js"></script>
+<script src="popup_script.js"></script>
 </body>
 </html>

@@ -86,12 +86,4 @@ function displayCourseTypes(certificateId) {
 function addNewCourseType() {
     alert('Feature not implemented yet');
 }
-function redirect(){
-    console.log("redirect function inside");
-    if(selectedCourseTypeId == null){
-        alert('You need to select a certificate');
-    } else {
-        window.location.href = 'empty_page.html';
-    }
-}
 
