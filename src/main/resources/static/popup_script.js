@@ -29,7 +29,7 @@ function populateSelectList(options) {
             const opt = document.createElement('option');
             opt.value = option.courseId;
             //TODO: format display value
-            opt.textContent = "courseId:" + option.courseId + ";additionalCost:" + option.additionalCost;
+            opt.textContent = "ID: " + option.courseId + ", szkolenie " + calculateDivingCourseTypeName(option.divingCourseType) + ", dodatkowy koszt: " + option.additionalCost + " PLN";
             select.appendChild(opt);
         });
         btn.disabled = false;
@@ -37,6 +37,19 @@ function populateSelectList(options) {
         btn.disabled = true;
         select.style.display = 'none';
     }
+}
+
+function calculateDivingCourseTypeName(divingCourseType) {
+     switch (divingCourseType) {
+         case "single":
+             return "jednoosobowe";
+         case "pair":
+             return "w parach";
+         case "group":
+             return "grupowe"
+         default:
+             return "nie zdefiniowane"
+     }
 }
 
 function closePopUp() {

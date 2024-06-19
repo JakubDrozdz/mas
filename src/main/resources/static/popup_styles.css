@@ -15,7 +15,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 400px;
+    max-width: 500px;
     border-radius: 10px;
 }
 .popUp-header {
@@ -52,10 +52,21 @@
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
     font-size: 16px;
     cursor: pointer;
 }
 .popUp-body button:hover {
     background-color: #ddd;
+}
+.popUp-body select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
 }
