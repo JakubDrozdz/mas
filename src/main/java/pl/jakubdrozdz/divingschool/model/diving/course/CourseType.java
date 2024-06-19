@@ -8,7 +8,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.annotations.Fetch;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.HashSet;
@@ -25,12 +24,12 @@ public class CourseType {
     private String name;
     private int minParticipantAge;
     private int maxParticipantAge;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "required_certificate")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
     @JsonIdentityReference(alwaysAsId = true)
     private Certificate requiredCertificate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="granted_certificate")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
     @JsonIdentityReference(alwaysAsId = true)

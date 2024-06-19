@@ -1,5 +1,8 @@
 package pl.jakubdrozdz.divingschool.model.diving.course;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,9 +36,13 @@ public abstract class DivingCourse {
     protected Map<Integer, RegistrationRequest> registrationRequests;
     @ManyToOne
     @JoinColumn(name="course_instructor")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "diverId")
+    @JsonIdentityReference(alwaysAsId = true)
     protected Instructor courseInstructor;
     @ManyToOne
     @JoinColumn(name="course_type", nullable=false)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseTypeId")
+    @JsonIdentityReference(alwaysAsId = true)
     protected CourseType courseType;
 
 
