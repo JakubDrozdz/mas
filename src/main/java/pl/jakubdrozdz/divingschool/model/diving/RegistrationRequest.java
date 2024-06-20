@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity(name = "Registration_Request")
 public class RegistrationRequest {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registrationRequestId;
     private int registrationRequestNumber;
     private LocalDateTime registrationDate;

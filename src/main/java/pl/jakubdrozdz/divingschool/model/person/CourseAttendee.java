@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Entity(name = "Course_Attendee")
 public class CourseAttendee {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseAttendeeId;
     private String emergencyPhoneNumber;
     @OneToOne(mappedBy = "courseAttendee")

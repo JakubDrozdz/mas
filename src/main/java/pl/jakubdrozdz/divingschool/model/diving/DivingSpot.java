@@ -1,9 +1,6 @@
 package pl.jakubdrozdz.divingschool.model.diving;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +16,7 @@ import java.util.Set;
 @Entity(name = "Diving_Spot")
 public class DivingSpot {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long divingSpotId;
     private String spotName;
     private String localization;

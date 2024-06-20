@@ -46,7 +46,8 @@ function validateForm() {
         startDate: startDate,
         endDate: endDate,
         additionalCost: additionalCost,
-        courseType: selectedCourseType
+        courseType: selectedCourseType,
+        divingCourseType: divingCourseType
     };
 
     console.log(JSON.stringify(jsonObject, null, 2));

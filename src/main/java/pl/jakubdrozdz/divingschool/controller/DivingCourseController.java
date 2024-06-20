@@ -2,9 +2,8 @@ package pl.jakubdrozdz.divingschool.controller;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.jakubdrozdz.divingschool.model.certificate.CreateDivingCourseDTO;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourseDTO;
 import pl.jakubdrozdz.divingschool.service.diving.course.DivingCourseService;
 
@@ -23,5 +22,10 @@ public class DivingCourseController {
     @GetMapping("/api/v1/divingCourse/{divingCourseId}")
     public DivingCourseDTO getDivingCourseById(@PathVariable Long divingCourseId) {
         return divingCourseService.getDivingCourseDto(divingCourseId);
+    }
+
+    @PostMapping("/api/v1/divingCourse")
+    public DivingCourseDTO postDivingCourse(@RequestBody CreateDivingCourseDTO createDivingCourseDTO) {
+        return divingCourseService.postDivingCourse(createDivingCourseDTO);
     }
 }

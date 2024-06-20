@@ -17,7 +17,7 @@ import java.util.Set;
 @ToString
 public class Certificate {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long certificateId;
     @Column(unique = true)
     private String certificateName;

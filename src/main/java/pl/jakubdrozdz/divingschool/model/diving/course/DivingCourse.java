@@ -24,8 +24,8 @@ import java.util.Map;
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)
 public abstract class DivingCourse {
     @Id
-    @GeneratedValue
-    private Long courseId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long courseId;
     protected String detailedDescription;
     @Setter
     protected CourseStatus courseStatus;

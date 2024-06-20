@@ -3,6 +3,8 @@ package pl.jakubdrozdz.divingschool.service.diving.course;
 import jakarta.persistence.DiscriminatorValue;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.jakubdrozdz.divingschool.model.certificate.CreateDivingCourseDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourse;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourseDTO;
 import pl.jakubdrozdz.divingschool.repository.diving.course.CourseTypeRepository;
@@ -41,5 +43,13 @@ public class DivingCourseService {
         ).stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Diving course with ID " + divingCourseId + " cannot be converted to DivingCourseDTO"));
+    }
+
+    public DivingCourseDTO postDivingCourse(CreateDivingCourseDTO createDivingCourseDTO) {
+        CourseType courseType = courseTypeRepository.findById((long) createDivingCourseDTO.courseType()).orElseThrow(() -> new IllegalArgumentException("Course type not found"));
+        DivingCourse divingCourse = createDivingCourseDTO.toDivingCourse(courseType);
+        divingCourse = divingCourseRepository.save(divingCourse);
+        courseTypeRepository.save(courseType);
+        return new DivingCourseDTO(divingCourse.getCourseId(), divingCourse.getDetailedDescription(), divingCourse.getCourseType().getName(), divingCourse.getAdditionalCost());
     }
 }

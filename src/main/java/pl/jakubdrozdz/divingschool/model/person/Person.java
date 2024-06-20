@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity(name = "Person")
 public class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long personId;
     private String firstName;
     private String lastName;

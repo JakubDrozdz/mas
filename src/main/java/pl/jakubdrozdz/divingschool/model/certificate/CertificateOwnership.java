@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity(name = "Certificate_Ownership")
 public class CertificateOwnership {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long certificateOwnershipId;
     @Column(unique = true)
     private String certificateNumber;

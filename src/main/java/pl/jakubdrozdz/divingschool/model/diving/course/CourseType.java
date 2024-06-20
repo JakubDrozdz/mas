@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity(name = "Course_Type")
 public class CourseType {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseTypeId;
     @Column(unique = true)
     private String name;

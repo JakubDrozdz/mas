@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity(name = "Equipment_Rent")
 public class EquipmentRent {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long equipmentRentId;
     private LocalDateTime rentDate;
     private LocalDateTime rentReturnDate;

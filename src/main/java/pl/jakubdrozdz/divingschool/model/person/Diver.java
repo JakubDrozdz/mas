@@ -21,7 +21,7 @@ import java.util.Set;
 @DiscriminatorValue("diver")
 public class Diver {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long diverId;
     private String medicalInformation;
     @OneToOne(mappedBy = "diver")

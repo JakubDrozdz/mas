@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 @Entity(name = "Diving")
 public class Diving {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long equipmentRentId;
     private LocalDateTime divingStart;
     private LocalDateTime divingEnd;
