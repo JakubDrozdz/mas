@@ -19,18 +19,27 @@ public class DivingCourseService {
     private CourseTypeRepository courseTypeRepository;
 
     public Set<DivingCourseDTO> getDivingCoursesDtosByCourseType(Long courseTypeId) {
+        //TODO: handle check if isPresent
         List<DivingCourse> divingCoursesByCourseType = divingCourseRepository.findDivingCoursesByCourseType(courseTypeRepository.findById(courseTypeId).get());
         return prepareDivingCourseDtos(divingCoursesByCourseType);
     }
 
     private Set<DivingCourseDTO> prepareDivingCourseDtos(List<DivingCourse> divingCourses) {
         return divingCourses.stream()
-                .map(divingCourse -> new DivingCourseDTO(divingCourse.getCourseId(), calculateDivingCourseType(divingCourse.getClass()), divingCourse.getAdditionalCost()))
+                .map(divingCourse -> new DivingCourseDTO(divingCourse.getCourseId(), divingCourse.getDetailedDescription(), calculateDivingCourseType(divingCourse.getClass()), divingCourse.getAdditionalCost()))
                 .collect(Collectors.toSet());
     }
 
     private String calculateDivingCourseType(Class<? extends DivingCourse> divingCourseClass) {
         DiscriminatorValue val = divingCourseClass.getAnnotation(DiscriminatorValue.class);
         return val == null ? null : val.value();
+    }
+
+    public DivingCourseDTO getDivingCourseDto(Long divingCourseId) {
+        return prepareDivingCourseDtos(
+                List.of(divingCourseRepository.findById(divingCourseId).orElseThrow(() -> new IllegalArgumentException("Diving course with ID " + divingCourseId + " does not exist")))
+        ).stream()
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Diving course with ID " + divingCourseId + " cannot be converted to DivingCourseDTO"));
     }
 }

@@ -28,7 +28,6 @@ function populateSelectList(options) {
         options.forEach(option => {
             const opt = document.createElement('option');
             opt.value = option.courseId;
-            //TODO: format display value
             opt.textContent = "ID: " + option.courseId + ", szkolenie " + calculateDivingCourseTypeName(option.divingCourseType) + ", dodatkowy koszt: " + option.additionalCost + " PLN";
             select.appendChild(opt);
         });
@@ -61,4 +60,8 @@ window.onclick = function(event) {
     if (event.target === popUp) {
         closePopUp();
     }
+}
+
+function setUpChoosenCertificate(){
+    localStorage.setItem("divingCourse", document.getElementById('optionsSelect').selectedOptions[0].value);
 }

@@ -86,7 +86,7 @@
             <div class="right-column">
                 <div class="form-group">
                     <label>Status:</label>
-                    <button type="button" class="status-button">Zaplanowane</button>
+                    <button type="button" class="status-button" disabled>Zaplanowane</button>
                 </div>
                 <div class="form-group">
                     <label for="start-date">Data rozpoczęcia:</label>
@@ -97,12 +97,12 @@
                     <input type="date" id="end-date" name="end-date">
                 </div>
                 <div class="form-group">
-                    <label for="additional-fee">Opłata dodatkowa:</label>
-                    <input type="number" id="additional-fee" name="additional-fee">
+                    <label for="additional-cost">Opłata dodatkowa:</label>
+                    <input type="number" id="additional-cost" name="additional-cost">
                 </div>
                 <div class="form-group">
                     <label>Rodzaj:</label>
-                    <label><input type="radio" name="type" value="individual"> Indywidualne</label>
+                    <label><input type="radio" name="diving-course-type" value="single"> Indywidualne</label>
                     <label><input type="radio" name="type" value="pair"> W parach</label>
                     <label><input type="radio" name="type" value="group"> Grupowe</label>
                 </div>
@@ -113,5 +113,6 @@
         </div>
     </form>
 </div>
+<script src="form_script.js"></script>
 </body>
 </html>
