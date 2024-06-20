@@ -1,7 +1,8 @@
 function showPrompt() {
     if(selectedCourseTypeId == null){
-        alert('You need to select a certificate');
+        alert('You need to select a course type');
     } else {
+        localStorage.setItem('courseType', selectedCourseTypeId);
         fetchOptions();
         document.getElementById('myPopUp').style.display = 'block';
     }
@@ -63,5 +64,5 @@ window.onclick = function(event) {
 }
 
 function setUpChoosenCertificate(){
-    localStorage.setItem("divingCourse", document.getElementById('optionsSelect').selectedOptions[0].value);
+    localStorage.setItem('divingCourse', document.getElementById('optionsSelect').selectedOptions[0].value);
 }

@@ -1,5 +1,7 @@
+let selectedCourseType;
 document.addEventListener('DOMContentLoaded', () => {
-    const choosenDivingCourse = localStorage.getItem("divingCourse")
+    const choosenDivingCourse = localStorage.getItem('divingCourse');
+    selectedCourseType = localStorage.getItem('courseType');
     localStorage.clear();
     console.log(choosenDivingCourse);
     if(choosenDivingCourse != null && choosenDivingCourse >= 0){
@@ -24,6 +26,28 @@ function enableRadioOption(divingCourseType) {
     radios.forEach(radio => {
         if (radio.value === divingCourseType) {
             radio.checked = true;
+        } else{
+            radio.disabled = true;
         }
     })
+}
+
+function validateForm() {
+    const detailedDescription = document.getElementById('description').value;
+    const statusOrdinal = 0;
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    const additionalCost = document.getElementById('additional-cost').value;
+    const divingCourseType = document.querySelector('input[name="diving-course-type"]:checked').value;
+
+    const jsonObject = {
+        detailedDescription: detailedDescription,
+        courseStatus: statusOrdinal,
+        startDate: startDate,
+        endDate: endDate,
+        additionalCost: additionalCost,
+        courseType: selectedCourseType
+    };
+
+    console.log(JSON.stringify(jsonObject, null, 2));
 }
