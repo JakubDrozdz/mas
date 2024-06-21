@@ -3,8 +3,8 @@ package pl.jakubdrozdz.divingschool.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
-import pl.jakubdrozdz.divingschool.model.certificate.CertificateDTO;
-import pl.jakubdrozdz.divingschool.model.diving.course.CourseTypeDTO;
+import pl.jakubdrozdz.divingschool.model.certificate.dto.CertificateDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.dto.CourseTypeDTO;
 import pl.jakubdrozdz.divingschool.repository.certificate.CertificateRepository;
 
 import java.util.ArrayList;

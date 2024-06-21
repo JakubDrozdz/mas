@@ -3,7 +3,7 @@ package pl.jakubdrozdz.divingschool.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.jakubdrozdz.divingschool.model.certificate.CertificateDTO;
+import pl.jakubdrozdz.divingschool.model.certificate.dto.CertificateDTO;
 import pl.jakubdrozdz.divingschool.service.CertificateService;
 
 import java.util.List;

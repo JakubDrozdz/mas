@@ -3,10 +3,10 @@ package pl.jakubdrozdz.divingschool.service.diving.course;
 import jakarta.persistence.DiscriminatorValue;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.jakubdrozdz.divingschool.model.certificate.CreateDivingCourseDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.dto.CreateDivingCourseDTO;
 import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourse;
-import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourseDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.dto.DivingCourseDTO;
 import pl.jakubdrozdz.divingschool.repository.diving.course.CourseTypeRepository;
 import pl.jakubdrozdz.divingschool.repository.diving.course.DivingCourseRepository;
 

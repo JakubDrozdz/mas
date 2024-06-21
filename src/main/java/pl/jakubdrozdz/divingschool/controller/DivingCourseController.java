@@ -3,8 +3,8 @@ package pl.jakubdrozdz.divingschool.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.jakubdrozdz.divingschool.model.certificate.CreateDivingCourseDTO;
-import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourseDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.dto.CreateDivingCourseDTO;
+import pl.jakubdrozdz.divingschool.model.diving.course.dto.DivingCourseDTO;
 import pl.jakubdrozdz.divingschool.service.diving.course.DivingCourseService;
 
 import java.util.Set;
