@@ -4,7 +4,7 @@ function showPrompt() {
     } else {
         localStorage.setItem('courseType', selectedCourseTypeId);
         fetchOptions();
-        document.getElementById('myPopUp').style.display = 'block';
+        document.getElementById('my-pop-up').style.display = 'block';
     }
 }
 
@@ -20,8 +20,8 @@ function fetchOptions() {
 }
 
 function populateSelectList(options) {
-    const select = document.getElementById('optionsSelect');
-    const btn = document.getElementById('otherTrainingBtn');
+    const select = document.getElementById('options-select');
+    const btn = document.getElementById('other-training-btn');
     select.style.display = 'inline-block';
     select.innerHTML = '';
 
@@ -29,7 +29,7 @@ function populateSelectList(options) {
         options.forEach(option => {
             const opt = document.createElement('option');
             opt.value = option.courseId;
-            opt.textContent = "ID: " + option.courseId + ", szkolenie " + calculateDivingCourseTypeName(option.divingCourseType) + ", dodatkowy koszt: " + option.additionalCost + " PLN";
+            opt.textContent = 'ID: ' + option.courseId + ', szkolenie ' + calculateDivingCourseTypeName(option.divingCourseType) + ', dodatkowy koszt: ' + option.additionalCost + ' PLN';
             select.appendChild(opt);
         });
         btn.disabled = false;
@@ -41,28 +41,28 @@ function populateSelectList(options) {
 
 function calculateDivingCourseTypeName(divingCourseType) {
      switch (divingCourseType) {
-         case "single":
-             return "jednoosobowe";
-         case "pair":
-             return "w parach";
-         case "group":
-             return "grupowe"
+         case 'single':
+             return 'jednoosobowe';
+         case 'pair':
+             return 'w parach';
+         case 'group':
+             return 'grupowe'
          default:
-             return "nie zdefiniowane"
+             return 'nie zdefiniowane'
      }
 }
 
 function closePopUp() {
-    document.getElementById('myPopUp').style.display = 'none';
+    document.getElementById('my-pop-up').style.display = 'none';
 }
 
 window.onclick = function(event) {
-    const popUp = document.getElementById('myPopUp');
+    const popUp = document.getElementById('my-pop-up');
     if (event.target === popUp) {
         closePopUp();
     }
 }
 
 function setUpChoosenCertificate(){
-    localStorage.setItem('divingCourse', document.getElementById('optionsSelect').selectedOptions[0].value);
+    localStorage.setItem('divingCourse', document.getElementById('options-select').selectedOptions[0].value);
 }

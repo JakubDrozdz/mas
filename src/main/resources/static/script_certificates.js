@@ -4,10 +4,7 @@ let selectedCourseTypeId;
 document.addEventListener('DOMContentLoaded', () => {
     const certificateTable = document.getElementById('certificates-table-body');
 
-    // Replace with your API endpoint
-    const apiEndpoint = 'http://localhost:8080/api/v1/certificate';
-
-    fetch(apiEndpoint)
+    fetch('http://localhost:8080/api/v1/certificate')
         .then(response => response.json())
         .then(certificates => {
             certificates.forEach(certificate => {
@@ -37,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function displayCourseTypes(certificateId) {
-    //console.log(globalCertificates)
     const certificate = globalCertificates.find((cert) => cert.certificateId === certificateId);
-    //console.log(certificate)
     if (certificate) {
         const courseTable = document.getElementById('course-table-body')
         courseTable.innerHTML = '';
@@ -76,8 +71,6 @@ function displayCourseTypes(certificateId) {
                 courseTable.appendChild(rowData);
             }
         )
-        //const courseTypeNames = certificate.courseTypes.map(courseType => courseType.name).join('\n');
-        //alert(`Available Course Types for ${certificate.certificateName}:\n${courseTypeNames}`);
     } else {
         alert('Certificate not found.');
     }

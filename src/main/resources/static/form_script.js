@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const choosenDivingCourse = localStorage.getItem('divingCourse');
     selectedCourseType = localStorage.getItem('courseType');
     localStorage.clear();
-    console.log(choosenDivingCourse);
     if(choosenDivingCourse != null && choosenDivingCourse >= 0){
-        console.log("inside function");
         fetch('http://localhost:8080/api/v1/divingCourse/'+choosenDivingCourse)
             .then(response => response.json())
             .then(data => {
@@ -75,39 +73,45 @@ function validateForm() {
             courseType: selectedCourseType,
             divingCourseType: divingCourseType
         };
-
-        const formContainer = document.getElementById('form');
-        const inputs = formContainer.getElementsByTagName('input');
-        for (let i = 0; i < inputs.length; i++) {
-            console.log(inputs[i]);
-            inputs[i].setAttribute('readonly', true);
-        }
-        const textAreas = formContainer.getElementsByTagName('textarea');
-        for (let i = 0; i < textAreas.length; i++) {
-            console.log(textAreas[i]);
-            textAreas[i].setAttribute('readonly', true);
-        }
-
-        const btnContainer = document.getElementById('button-container');
-        const validateBtn = document.getElementById('validate-button');
-        btnContainer.removeChild(validateBtn);
-        const submitBtn = document.createElement('button');
-        submitBtn.type = 'button';
-        submitBtn.textContent = 'Zatwierdź';
-        submitBtn.classList.add('action-button');
-        submitBtn.onclick = () => postData();
-        const cancelBtn = document.createElement('button');
-        cancelBtn.type = 'button';
-        cancelBtn.textContent = 'Odrzuć';
-        cancelBtn.classList.add('action-button');
-        cancelBtn.onclick = () => window.location.href = '/';
-        btnContainer.appendChild(cancelBtn);
-        btnContainer.appendChild(submitBtn);
+        disableInputFields();
+        updateButtonContainer();
     }
 }
 
+function disableInputFields() {
+    const formContainer = document.getElementById('form');
+    const inputs = formContainer.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+        console.log(inputs[i]);
+        inputs[i].setAttribute('readonly', true);
+    }
+    const textAreas = formContainer.getElementsByTagName('textarea');
+    for (let i = 0; i < textAreas.length; i++) {
+        console.log(textAreas[i]);
+        textAreas[i].setAttribute('readonly', true);
+    }
+}
+
+function updateButtonContainer(){
+    const btnContainer = document.getElementById('button-container');
+    const validateBtn = document.getElementById('validate-button');
+    btnContainer.removeChild(validateBtn);
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'button';
+    submitBtn.textContent = 'Zatwierdź';
+    submitBtn.classList.add('action-button');
+    submitBtn.onclick = () => postData();
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.textContent = 'Odrzuć';
+    cancelBtn.classList.add('action-button');
+    cancelBtn.onclick = () => window.location.href = '/';
+    btnContainer.appendChild(cancelBtn);
+    btnContainer.appendChild(submitBtn);
+}
+
 async function postData() {
-    await fetch("http://localhost:8080/api/v1/divingCourse", {
+    await fetch('http://localhost:8080/api/v1/divingCourse', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
