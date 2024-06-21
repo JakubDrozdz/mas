@@ -48,7 +48,7 @@
             display: block;
             margin-bottom: 15px;
         }
-        .submit-button {
+        .action-button {
             background-color: rgb(82, 178, 213);
             border: 2px solid black;
             font-size: 16px;
@@ -67,15 +67,16 @@
         .right-column {
             flex: 2;
         }
-        .button-container {
+        #button-container {
             display: flex;
             justify-content: flex-end;
+            gap: 4%;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <form>
+    <form id="form">
         <div class="form-container">
             <div class="left-column">
                 <div class="form-group">
@@ -108,8 +109,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-group button-container">
-            <button type="button" class="submit-button" onclick="validateForm()">Sprawdź poprawność</button>
+        <div id="button-container" class="form-group">
+            <button type="button" id="validate-button" class="action-button" onclick="validateForm()">Sprawdź poprawność</button>
         </div>
     </form>
 </div>

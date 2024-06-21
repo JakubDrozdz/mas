@@ -88,7 +88,7 @@ public abstract class DivingCourse {
     }
 
     public void setAdditionalCost(int additionalCost) {
-        if(additionalCost <= 0) {
+        if(additionalCost < 0) {
             throw new IllegalArgumentException("Additional cost cannot be negative");
         }
         this.additionalCost = additionalCost;
