@@ -8,6 +8,11 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 
 import java.time.LocalDate;
 
+/**
+ * Model class for SingleDivingCourse entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @Entity
 @DiscriminatorValue("single")

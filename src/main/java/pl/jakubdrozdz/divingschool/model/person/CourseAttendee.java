@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * Model class for CourseAttendee entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Course_Attendee")
@@ -30,11 +35,21 @@ public class CourseAttendee {
         this.emergencyPhoneNumber = emergencyPhoneNumber;
     }
 
+    /**
+     * Method used to create association with Person object
+     *
+     * @param person instance of Person class
+     */
     public void setPerson(Person person) {
         this.person = person;
         this.person.setCourseAttendee(this);
     }
 
+    /**
+     * Method used to calculate course attendee age
+     *
+     * @return age of person (number of years)
+     */
     public int getAge(){
         return LocalDate.now().getYear() - this.person.getBirthDate().getYear();
     }

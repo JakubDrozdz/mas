@@ -9,6 +9,11 @@ import pl.jakubdrozdz.divingschool.model.person.Diver;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Model class for Diving entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving")
@@ -62,6 +67,12 @@ public class Diving {
     }
 
     //TODO: can we change associations?
+
+    /**
+     * Method used to add association with Diver class
+     *
+     * @param diver instance of Diver class
+     */
     public void setDiver(Diver diver) {
         if(diver == null){
             throw new IllegalArgumentException("Diver cannot be null");
@@ -71,6 +82,12 @@ public class Diving {
     }
 
     //TODO: can we change associations?
+
+    /**
+     * Method used to add association with DivingSpot class
+     *
+     * @param divingSpot instance of DivingSpot class
+     */
     public void setDivingSpot(DivingSpot divingSpot) {
         if(divingSpot == null){
             throw new IllegalArgumentException("Diving spot cannot be null");
@@ -79,6 +96,11 @@ public class Diving {
         divingSpot.addDiving(this);
     }
 
+    /**
+     * Method used to calculate duration (minutes) of diving
+     *
+     * @return diving duration in minutes
+     */
     public int getDurationMinutes() {
         return (int) ChronoUnit.MINUTES.between(divingStart, divingEnd);
     }

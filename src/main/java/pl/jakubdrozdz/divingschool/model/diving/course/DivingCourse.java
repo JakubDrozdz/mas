@@ -17,6 +17,11 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Model class for DivingCourse entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving_Course")
@@ -94,6 +99,11 @@ public abstract class DivingCourse {
         this.additionalCost = additionalCost;
     }
 
+    /**
+     * Method used to create association with CourseType class
+     *
+     * @param courseType instance of CourseType class
+     */
     public void setCourseType(CourseType courseType) {
         if(courseType == null && this.courseType == null){
             throw new IllegalArgumentException("Course Type cannot be null");
@@ -108,6 +118,11 @@ public abstract class DivingCourse {
 
     }
 
+    /**
+     * Method used to add association with RegistrationRequest class
+     *
+     * @param registrationRequest instance of RegistrationRequest class
+     */
     public void addRegistrationRequest(RegistrationRequest registrationRequest) {
         if(this.registrationRequests.containsKey(registrationRequest.getRegistrationRequestNumber())){
             throw new IllegalArgumentException("Cannot change registration request");
@@ -115,6 +130,11 @@ public abstract class DivingCourse {
         registrationRequests.put(registrationRequest.getRegistrationRequestNumber(), registrationRequest);
     }
 
+    /**
+     * Method used to add association with Instructor class
+     *
+     * @param instructor instance of Instructor class
+     */
     public void addInstructor(Instructor instructor) {
         if (this.courseInstructor == null && instructor != null) {
             this.courseInstructor = instructor;
@@ -126,18 +146,26 @@ public abstract class DivingCourse {
         }
     }
 
+    //TODO: move to service?
     public static void printAllCourses() {
 
     }
 
+    //TODO: move to service?
     public DivingCourse changeCourseStatus(CourseStatus courseStatus) {
         this.courseStatus = courseStatus;
         return this;
     }
 
+    //TODO: move to service?
     public static DivingCourse addDivingCourse() {
         return null;
     }
 
+    /**
+     * Method used to calculate total price for diving course type
+     *
+     * @return price of diving course
+     */
     public abstract int calculateTotalPrice();
 }

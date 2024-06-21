@@ -7,12 +7,18 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for CourseType entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Course_Type")
@@ -28,6 +34,7 @@ public class CourseType {
     @JoinColumn(name = "required_certificate")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
     @JsonIdentityReference(alwaysAsId = true)
+    @Setter
     private Certificate requiredCertificate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="granted_certificate")
@@ -72,14 +79,16 @@ public class CourseType {
         this.maxParticipantAge = maxParticipantAge;
     }
 
-    public void setRequiredCertificate(Certificate requiredCertificate) {
-        this.requiredCertificate = requiredCertificate;
-    }
-
+    //TODO: move to service?
     public static CourseType addCourseType(){
         return null;
     }
 
+    /**
+     * Method used to create association with Certificate class
+     *
+     * @param certificate instance of Certificate class
+     */
     public void addGrantedCertificate(Certificate certificate) {
         if(this.grantedCertificate == null) {
             this.grantedCertificate = certificate;
@@ -87,6 +96,11 @@ public class CourseType {
         }
     }
 
+    /**
+     * Method used to create association with DivingCourse class
+     *
+     * @param divingCourse instance of DivingCourse class
+     */
     public void addDivingCourse(DivingCourse divingCourse) {
         if(divingCourse == null) {
             throw new IllegalArgumentException("Cannot assign null value");
@@ -96,6 +110,7 @@ public class CourseType {
         divingCourses.add(divingCourse);
     }
 
+    //TODO: move to service?
     public void removeDivingCourse(DivingCourse divingCourse) {
         if(divingCourse == null || !divingCourses.contains(divingCourse)){
             throw new IllegalArgumentException();

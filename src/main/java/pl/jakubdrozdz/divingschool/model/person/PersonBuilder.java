@@ -3,6 +3,11 @@ package pl.jakubdrozdz.divingschool.model.person;
 import pl.jakubdrozdz.divingschool.model.enumeration.AdvancementLevel;
 import java.time.LocalDate;
 
+/**
+ * Builder class for Person
+ *
+ * @author Jakub Drozdz
+ */
 public class PersonBuilder {
     private String firstName;
     private String lastName;

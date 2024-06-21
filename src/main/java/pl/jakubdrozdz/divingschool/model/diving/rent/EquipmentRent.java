@@ -10,6 +10,11 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for EquipmentRent entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Equipment_Rent")
@@ -60,6 +65,11 @@ public class EquipmentRent {
         this.rentReturnDate = rentReturnDate;
     }
 
+    /**
+     * Method used to add association with RegistrationRequest class
+     *
+     * @param registrationRequest instance of RegistrationRequest class
+     */
     public void setRegistrationRequest(RegistrationRequest registrationRequest) {
         if(registrationRequest == null){
             throw new IllegalArgumentException("Registration request cannot be null");
@@ -71,6 +81,11 @@ public class EquipmentRent {
         registrationRequest.addEquipmentRent(this);
     }
 
+    /**
+     * Method used to add association with DivingEquipment class
+     *
+     * @param equipment instance of DivingEquipment class
+     */
     public void addEquipment(DivingEquipment equipment) {
         if(equipment == null){
             throw new IllegalArgumentException("Cannot add null diving equipment");
@@ -80,6 +95,12 @@ public class EquipmentRent {
             equipment.addEquipmentRent(this);
         }
     }
+
+    /**
+     * Method used to add associations with objects of DivingEquipment class
+     *
+     * @param equipment set of DivingEquipment instances
+     */
     public void addEquipments(Set<DivingEquipment> equipment) {
         if(equipment == null || equipment.isEmpty()){
             throw new IllegalArgumentException("Equipment list cannot be null or empty");
@@ -89,10 +110,12 @@ public class EquipmentRent {
         }
     }
 
+    //TODO: move to service?
     public static EquipmentRent createEquipmentRent(){
         return null;
     }
 
+    //TODO: move to service?
     /*public static void removeEquipmentRent(EquipmentRent equipmentRent) {
         //if(extent.contains(parkingSpot)){
             //extent.remove(equipmentRent);

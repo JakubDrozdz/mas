@@ -12,6 +12,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for Person entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Person")
@@ -84,6 +89,11 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Method used to add association to RegistrationRequest object
+     *
+     * @param registrationRequest instance of RegistrationRequest class
+     */
     public void addRegistrationRequest(RegistrationRequest registrationRequest) {
         if(registrationRequest == null) {
             throw new IllegalArgumentException("Registration request cannot be null");
@@ -94,6 +104,11 @@ public class Person {
         registrationRequests.add(registrationRequest);
     }
 
+    /**
+     * Method used to add association to Diver object
+     *
+     * @param diver instance of Diver class
+     */
     public void setDiver(Diver diver) {
         if(this.diver != null && diver != null) {
             throw new IllegalArgumentException("Cannot change Diver");
@@ -102,6 +117,11 @@ public class Person {
         }
     }
 
+    /**
+     * Method used to add association to CourseAttendee object
+     *
+     * @param courseAttendee instance of CourseAttendee class
+     */
     public void setCourseAttendee(CourseAttendee courseAttendee) {
         if(this.courseAttendee != null && courseAttendee != null) {
             throw new IllegalArgumentException("Cannot change CourseAttendee");

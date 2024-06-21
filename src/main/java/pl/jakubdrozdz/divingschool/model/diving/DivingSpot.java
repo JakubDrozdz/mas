@@ -11,6 +11,11 @@ import pl.jakubdrozdz.divingschool.model.enumeration.DivingSpotType;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for DivingSpot entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diving_Spot")
@@ -55,6 +60,11 @@ public class DivingSpot {
         this.depth = depth;
     }
 
+    /**
+     * Method used to add association with Diving class
+     *
+     * @param diving instance of Diving class
+     */
     public void addDiving(Diving diving) {
         if(diving == null) {
             throw new IllegalArgumentException("Cannot add null reference");

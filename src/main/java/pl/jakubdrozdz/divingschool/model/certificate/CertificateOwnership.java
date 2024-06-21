@@ -10,6 +10,11 @@ import pl.jakubdrozdz.divingschool.model.person.Diver;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Model class for CertificateOwnership entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Certificate_Ownership")
@@ -50,6 +55,11 @@ public class CertificateOwnership {
         this.issueDate = issueDate;
     }
 
+    /**
+     * Method used to create association with Diver class
+     *
+     * @param diver instance of Diver class
+     */
     private void setDiver(Diver diver) {
         if(diver == null){
             throw new IllegalArgumentException("Diver cannot be null");
@@ -58,6 +68,11 @@ public class CertificateOwnership {
         this.diver.addCertificateOwnership(this);
     }
 
+    /**
+     * Method used to create association with Certificate class
+     *
+     * @param certificate instance of Certificate class
+     */
     private void setCertificate(Certificate certificate) {
         if(certificate == null){
             throw new IllegalArgumentException("Certificate cannot be null");

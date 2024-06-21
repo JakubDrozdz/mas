@@ -10,9 +10,18 @@ import pl.jakubdrozdz.divingschool.model.certificate.CertificateOwnership;
 import pl.jakubdrozdz.divingschool.model.diving.Diving;
 import pl.jakubdrozdz.divingschool.model.diving.DivingSpot;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for Diver entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Diver")
@@ -45,12 +54,22 @@ public class Diver {
         this.medicalInformation = medicalInformation;
     }
 
+    /**
+     * Method used to add association with Person object
+     *
+     * @param person instance of Person class
+     */
     public void setPerson(Person person) {
         this.person = person;
         this.person.setDiver(this);
 
     }
 
+    /**
+     * Method used to add association with CertificateOwnership object
+     *
+     * @param certificateOwnership instance of CertificateOwnership class
+     */
     public void addCertificateOwnership(CertificateOwnership certificateOwnership) {
         if(certificateOwnership == null) {
             throw new IllegalArgumentException("Certificate ownership cannot be null");
@@ -61,6 +80,11 @@ public class Diver {
         this.certificateOwnershipSet.add(certificateOwnership);
     }
 
+    /**
+     * Method used to add association with Diving object
+     *
+     * @param diving instance of Diving class
+     */
     public void addDiving(Diving diving) {
         if(diving == null) {
             throw new IllegalArgumentException("Cannot add null reference");
@@ -71,16 +95,26 @@ public class Diver {
         divings.add(diving);
     }
 
+    //TODO: move to service?
     public void addCertificate(Certificate certificate) {
 
     }
 
+    //TODO: move to service?
     public void addDiving(DivingSpot divingSpot) {
 
     }
 
+    /**
+     * Method used to calculate years of experience from first certificate issued
+     *
+     * @return years of experience
+     */
     public int calculateYearOfExperience() {
-        //TODO: calculate based on date of first certificate
-        return 0;
+        LocalDateTime firstCertificateIssueDate = certificateOwnershipSet.stream()
+                .map(CertificateOwnership::getIssueDate)
+                .min(LocalDateTime::compareTo)
+                .orElseThrow(() -> new RuntimeException("Cannot get issue date from Certificate Ownership"));
+        return Period.between(firstCertificateIssueDate.toLocalDate(), LocalDate.now()).getYears();
     }
 }

@@ -8,6 +8,11 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 
 import java.time.LocalDate;
 
+/**
+ * Model class for PairDivingCourse entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity

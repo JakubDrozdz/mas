@@ -8,6 +8,11 @@ import pl.jakubdrozdz.divingschool.model.enumeration.CourseStatus;
 
 import java.time.LocalDate;
 
+/**
+ * Model class for GroupDivingCourse entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -37,6 +42,7 @@ public class GroupDivingCourse extends DivingCourse {
         }
         GroupDivingCourse.maxNumberOfParticipants = maxNumberOfParticipants;
     }
+
 
     @Override
     public int calculateTotalPrice() {

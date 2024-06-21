@@ -11,6 +11,11 @@ import pl.jakubdrozdz.divingschool.model.enumeration.AdvancementLevel;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for Instructor entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Instructor")
@@ -27,6 +32,11 @@ public class Instructor extends Diver{
         divingCourses = new HashSet<>();
     }
 
+    /**
+     * Method used to add association to DivingCourse object
+     *
+     * @param divingCourse instance of DivingCourse class
+     */
     public void assignToDivingCourse(DivingCourse divingCourse) {
         if(!divingCourses.contains(divingCourse)) {
             divingCourses.add(divingCourse);
@@ -34,6 +44,7 @@ public class Instructor extends Diver{
         }
     }
 
+    //TODO: move to service?
     public void removeFromDivingCourse(DivingCourse divingCourse) {
         if(divingCourses.contains(divingCourse)) {
             divingCourses.remove(divingCourse);

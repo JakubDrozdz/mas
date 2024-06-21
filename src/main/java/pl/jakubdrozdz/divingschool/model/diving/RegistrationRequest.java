@@ -12,6 +12,11 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for RegistrationRequest entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Registration_Request")
@@ -52,6 +57,11 @@ public class RegistrationRequest {
         this.registrationDate = registrationDate;
     }
 
+    /**
+     * Method used to add association with Person object
+     *
+     * @param person instance of Person class
+     */
     private void setPerson(Person person) {
         if(person == null){
             throw new IllegalArgumentException("Person cannot be null");
@@ -60,6 +70,11 @@ public class RegistrationRequest {
         this.person.addRegistrationRequest(this);
     }
 
+    /**
+     * Method used to add association with DivingCourse object
+     *
+     * @param divingCourse instance of DivingCourse class
+     */
     private void setDivingCourse(DivingCourse divingCourse) {
         if(divingCourse == null){
             throw new IllegalArgumentException("Diving course cannot be null");
@@ -68,6 +83,11 @@ public class RegistrationRequest {
         this.divingCourse.addRegistrationRequest(this);
     }
 
+    /**
+     * Method used to add association with EquipmentRent object
+     *
+     * @param equipmentRent instance of EquipmentRent class
+     */
     public void addEquipmentRent(EquipmentRent equipmentRent) {
         if(equipmentRent == null){
             throw new IllegalArgumentException("EquipmentRent cannot be null");
@@ -77,6 +97,7 @@ public class RegistrationRequest {
         equipmentRents.add(equipmentRent);
     }
 
+    //TODO: move to service
     /*public void removeEquipmentRent(EquipmentRent equipmentRent) {
         if(equipmentRent == null || !equipmentRents.contains(equipmentRent)){
             throw new IllegalArgumentException();

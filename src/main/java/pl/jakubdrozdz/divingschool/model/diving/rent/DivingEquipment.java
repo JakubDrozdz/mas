@@ -13,6 +13,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Model class for DivingEquipment entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Equipment")
@@ -37,7 +42,7 @@ public class DivingEquipment {
         if(equipmentId <= 0) {
             throw new IllegalArgumentException("Equipment Id must be greater than 0");
         }
-        this.equipmentId = Long.valueOf(equipmentId);
+        this.equipmentId = (long) equipmentId;
     }
 
     public void setEquipmentName(String equipmentName) {
@@ -61,8 +66,13 @@ public class DivingEquipment {
         this.equipmentBrand = equipmentBrand;
     }
 
+    /**
+     * Method used to check if equipment is available
+     *
+     * @return true if equipment is available
+     */
     public boolean isAvailable() {
-        //TODO: think about some logic
+        //TODO: check if logic is valid
         LocalDateTime now = LocalDateTime.now();
         return rents.stream()
                 .filter(rent -> rent.getRentDate().isBefore(now) &&
@@ -70,6 +80,11 @@ public class DivingEquipment {
                         rent.getRentReturnDate().isAfter(now)).collect(Collectors.toUnmodifiableSet()).isEmpty();
     }
 
+    /**
+     * Method used to add association to EquipmentRent class
+     *
+     * @param equipmentRent instance of EquipmentRent class
+     */
     public void addEquipmentRent(EquipmentRent equipmentRent) {
         if(!this.rents.contains(equipmentRent)){
             this.rents.add(equipmentRent);

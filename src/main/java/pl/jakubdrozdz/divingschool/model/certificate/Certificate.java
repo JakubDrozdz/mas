@@ -11,6 +11,11 @@ import pl.jakubdrozdz.divingschool.model.diving.course.CourseType;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class for Certificate entity
+ *
+ * @author Jakub Drozdz
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "Certificate")
@@ -57,6 +62,11 @@ public class Certificate {
         this.qualificationsDescription = qualificationsDescription;
     }
 
+    /**
+     * Method used to create association with CertificateOwnership class
+     *
+     * @param certificateOwnership instance of CertificateOwnership class
+     */
     public void addCertificateOwnership(CertificateOwnership certificateOwnership){
         if(certificateOwnership == null){
             throw new IllegalArgumentException("Certificate ownership cannot be null");
@@ -67,6 +77,11 @@ public class Certificate {
         this.certificateOwnershipSet.add(certificateOwnership);
     }
 
+    /**
+     * Method used to create association with CourseType class
+     *
+     * @param courseType instance of CourseType class
+     */
     public void addCourseType(CourseType courseType) {
         if(!this.courseTypes.contains(courseType)){
             this.courseTypes.add(courseType);
@@ -74,6 +89,7 @@ public class Certificate {
         }
     }
 
+    //TODO: move to service?
     public static Certificate addCertificateOwnership(){
         return null;
     }
