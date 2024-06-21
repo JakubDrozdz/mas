@@ -27,7 +27,7 @@ public class EquipmentRent {
     @ManyToOne
     @JoinColumn(name = "registration_requests", nullable = false)
     private RegistrationRequest registrationRequest;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "EquipmnetRent_Equipment",
             joinColumns = { @JoinColumn(name = "equipmentRentId") },

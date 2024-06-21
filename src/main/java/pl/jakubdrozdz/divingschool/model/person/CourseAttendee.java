@@ -20,7 +20,7 @@ public class CourseAttendee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseAttendeeId;
     private String emergencyPhoneNumber;
-    @OneToOne(mappedBy = "courseAttendee")
+    @OneToOne(mappedBy = "courseAttendee", cascade = CascadeType.PERSIST)
     private Person person;
 
     public CourseAttendee(Person person, String emergencyPhoneNumber) {

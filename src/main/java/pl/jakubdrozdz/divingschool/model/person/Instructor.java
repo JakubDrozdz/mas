@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.jakubdrozdz.divingschool.model.certificate.CertificateOwnership;
 import pl.jakubdrozdz.divingschool.model.diving.course.DivingCourse;
 import pl.jakubdrozdz.divingschool.model.enumeration.AdvancementLevel;
 
@@ -25,8 +26,8 @@ public class Instructor extends Diver{
     private AdvancementLevel advancementLevel;
     @OneToMany(mappedBy = "courseInstructor")
     private Set<DivingCourse> divingCourses;
-    public Instructor(Person person, AdvancementLevel advancementLevel, String phoneNumber, String medicalInformation) {
-        super(person, medicalInformation);
+    public Instructor(Person person, AdvancementLevel advancementLevel, String phoneNumber, CertificateOwnership certificateOwnership, String medicalInformation) {
+        super(person, medicalInformation, certificateOwnership);
         setAdvancementLevel(advancementLevel);
         person.setPhoneNumber(phoneNumber);
         divingCourses = new HashSet<>();

@@ -1,5 +1,6 @@
 package pl.jakubdrozdz.divingschool.model.person;
 
+import pl.jakubdrozdz.divingschool.model.certificate.CertificateOwnership;
 import pl.jakubdrozdz.divingschool.model.enumeration.AdvancementLevel;
 import java.time.LocalDate;
 
@@ -44,15 +45,15 @@ public class PersonBuilder {
         return new CourseAttendee(this.build(), emergencyPhoneNumber);
     }
 
-    public Diver buildAsDiver(String medicalInformation){
-        return new Diver(this.build(), medicalInformation);
+    public Diver buildAsDiver(String medicalInformation, CertificateOwnership certificateOwnership){
+        return new Diver(this.build(), medicalInformation, certificateOwnership);
     }
 
-    public Instructor buildAsInstructor(String medicalInformation, AdvancementLevel advancementLevel){
+    public Instructor buildAsInstructor(String medicalInformation, AdvancementLevel advancementLevel, CertificateOwnership certificateOwnership){
         if(phoneNumber == null){
             throw new IllegalArgumentException("Phone number cannot be null for Instructor");
         }
-        return new Instructor(this.build(), advancementLevel, phoneNumber, medicalInformation);
+        return new Instructor(this.build(), advancementLevel, phoneNumber, certificateOwnership, medicalInformation);
     }
 
     public Person build() {

@@ -28,7 +28,7 @@ public class DivingSpot {
     private double depth;
     @Setter
     private DivingSpotType divingSpotType;
-    @OneToMany(mappedBy = "divingSpot")
+    @OneToMany(mappedBy = "divingSpot", cascade = CascadeType.REMOVE)
     private Set<Diving> divingSet;
 
     public DivingSpot(String spotName, String localization, double depth, DivingSpotType divingSpotType) {

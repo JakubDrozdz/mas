@@ -13,7 +13,6 @@ import pl.jakubdrozdz.divingschool.model.diving.DivingSpot;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,18 +32,19 @@ public class Diver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long diverId;
     private String medicalInformation;
-    @OneToOne(mappedBy = "diver")
+    @OneToOne(mappedBy = "diver", cascade = CascadeType.PERSIST)
     private Person person;
-    @OneToMany(mappedBy = "diver")
+    @OneToMany(mappedBy = "diver", cascade = CascadeType.REMOVE)
     private Set<Diving> divings;
-    @OneToMany(mappedBy = "diver")
+    @OneToMany(mappedBy = "diver", cascade = CascadeType.REMOVE)
     private Set<CertificateOwnership> certificateOwnershipSet;
 
-    public Diver(Person person, String medicalInformation) {
+    public Diver(Person person, String medicalInformation, CertificateOwnership certificateOwnership) {
         setPerson(person);
         setMedicalInformation(medicalInformation);
         certificateOwnershipSet = new HashSet<>();
         divings = new HashSet<>();
+        addCertificateOwnership(certificateOwnership);
     }
 
     public void setMedicalInformation(String medicalInformation) {

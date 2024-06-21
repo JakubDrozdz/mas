@@ -41,7 +41,7 @@ public class CourseType {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "certificateId")
     @JsonIdentityReference(alwaysAsId = true)
     private Certificate grantedCertificate;
-    @OneToMany(mappedBy = "courseType")
+    @OneToMany(mappedBy = "courseType", cascade = CascadeType.ALL)
     private Set<DivingCourse> divingCourses;
 
     public CourseType(String name, int minParticipantAge, int maxParticipantAge) {

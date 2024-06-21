@@ -30,7 +30,7 @@ public class Certificate {
     private String qualificationsDescription;
     @OneToMany(mappedBy = "certificate")
     private Set<CertificateOwnership> certificateOwnershipSet;
-    @OneToMany(mappedBy = "grantedCertificate")
+    @OneToMany(mappedBy = "grantedCertificate", cascade = CascadeType.REMOVE)
     private Set<CourseType> courseTypes;
 
     public Certificate(String certificateName, String organizationName, String qualificationsDescription) {

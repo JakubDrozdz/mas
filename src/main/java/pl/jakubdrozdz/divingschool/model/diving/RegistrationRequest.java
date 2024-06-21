@@ -32,7 +32,7 @@ public class RegistrationRequest {
     @ManyToOne
     @JoinColumn(name = "registration_requests_course", nullable = false)
     private DivingCourse divingCourse;
-    @OneToMany(mappedBy = "registrationRequest")
+    @OneToMany(mappedBy = "registrationRequest", cascade = CascadeType.ALL)
     private Set<EquipmentRent> equipmentRents;
 
     public RegistrationRequest(int registrationRequestNumber, LocalDateTime registrationDate, Person person, DivingCourse divingCourse) {
