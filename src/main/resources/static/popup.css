@@ -38,14 +38,13 @@
 .close:hover,
 .close:focus {
     color: black;
-    text-decoration: none;
     cursor: pointer;
 }
-.popUp-body {
+.pop-up-body {
     margin: 20px 0;
     text-align: center;
 }
-.popUp-body button {
+.pop-up-body button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -56,10 +55,10 @@
     font-size: 16px;
     cursor: pointer;
 }
-.popUp-body button:hover {
+.pop-up-body button:hover {
     background-color: #ddd;
 }
-.popUp-body select {
+.pop-up-body select {
     display: block;
     width: 100%;
     padding: 10px;
@@ -69,4 +68,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.pop-up-body a{
+    text-decoration: none;
 }
