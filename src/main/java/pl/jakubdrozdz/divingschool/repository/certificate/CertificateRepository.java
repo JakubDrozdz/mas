@@ -8,6 +8,11 @@ import pl.jakubdrozdz.divingschool.model.certificate.Certificate;
 
 import java.util.List;
 
+/**
+ * Interface used as DAO for Certificate class
+ *
+ * @author Jakub Drozdz
+ */
 @Repository
 public interface CertificateRepository extends JpaRepository<Certificate, Long> {
     @Query("SELECT DISTINCT c FROM Certificate c LEFT JOIN FETCH c.courseTypes")

@@ -26,6 +26,6 @@ public class DivingCourseController {
 
     @PostMapping("/api/v1/divingCourse")
     public DivingCourseDTO postDivingCourse(@RequestBody CreateDivingCourseDTO createDivingCourseDTO) {
-        return divingCourseService.postDivingCourse(createDivingCourseDTO);
+        return divingCourseService.saveDivingCourse(createDivingCourseDTO);
     }
 }

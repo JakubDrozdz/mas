@@ -67,7 +67,7 @@ public class DivingEquipment {
         return rents.stream()
                 .filter(rent -> rent.getRentDate().isBefore(now) &&
                         rent.getRentReturnDate() != null &&
-                        rent.getRentReturnDate().isAfter(now)).collect(Collectors.toSet()).isEmpty();
+                        rent.getRentReturnDate().isAfter(now)).collect(Collectors.toUnmodifiableSet()).isEmpty();
     }
 
     public void addEquipmentRent(EquipmentRent equipmentRent) {
